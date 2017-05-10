@@ -1,0 +1,9 @@
+{
+  "presets": ["./presets/es2015", "stage-2", "react"],
+  "plugins": ["flow-comments", "transform-export-extensions"],
+  "env": {
+    "cjs": {
+      "plugins": ["add-module-exports"]
+    }
+  }
+}
