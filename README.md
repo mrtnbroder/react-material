@@ -1,4 +1,4 @@
-# React-Material
+# React-Material 👷 WIP 🚧
 [![npm](https://img.shields.io/npm/v/react-material.svg?style=flat-square)]()
 [![Build Status](https://img.shields.io/travis/mrtnbroder/react-material/master.svg?maxAge=2592000&style=flat-square)]()
 [![Coveralls](https://img.shields.io/coveralls/mrtnbroder/react-material.svg?maxAge=2592000&style=flat-square)]()
@@ -15,18 +15,6 @@ yarn add react-material
 ```
 
 ## Usage
-
-```js
-import { Menu, MenuItem } from 'react-material'
-
-const items = [
-  <MenuItem primaryText='Wat'/>
-]
-
-export default (
-  <Menu menuItems={items}/>
-)
-```
 
 ## API
 
