@@ -2,10 +2,6 @@
 import React, { PureComponent } from 'react'
 
 import {
-  Divider,
-  List,
-  ListItem,
-  ListItemText,
   Menu,
   MenuItem,
   MenuItemText,
@@ -20,9 +16,21 @@ export class ThirdLevelMenu extends PureComponent {
     secondary: '1.2',
   }
 
-  handleItemClick = (e) => this.setState({ open: !this.state.open, anchorEl: e.currentTarget })
+  handleItemClick = (e) => {
+    this.setState({ open: !this.state.open, anchorEl: e.currentTarget })
+  }
 
-  handleRequestClose = () => this.setState({ open: false })
+  handleRequestClose = () => {
+    this.setState({ open: false }, () => {
+      this.timeout = setTimeout(() => {
+        if (this.props.onRequestClose) this.props.onRequestClose()
+      }, 150)
+    })
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.timeout)
+  }
 
   render() {
     return (
@@ -38,14 +46,12 @@ export class ThirdLevelMenu extends PureComponent {
           />
         <Menu
           anchorEl={this.state.anchorEl}
-          anchorOrigin={{
-            vertical: 'top',
-            horizontal: 'right',
-          }}
+          elevation={9}
           onRequestClose={this.handleRequestClose}
           open={this.state.open}
+          targetOrigin={{ vertical: 'top', horizontal: 'right' }}
           >
-          <MenuItem>
+          <MenuItem onClick={this.handleRequestClose}>
             <MenuItemText
               primary='Line Spacing'
               secondary='1.2'
@@ -72,5 +78,3 @@ export class ThirdLevelMenu extends PureComponent {
 ThirdLevelMenu.propTypes = {
 
 }
-
-export default ThirdLevelMenu

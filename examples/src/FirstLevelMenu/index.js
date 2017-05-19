@@ -21,15 +21,24 @@ export class FirstLevelMenu extends PureComponent {
     secondary: 'Every 2 Weeks',
   }
 
-  handleItemClick = (e) => this.setState({ open: !this.state.open, anchorEl: e.currentTarget })
+  handleItemClick = (e) => {
+    this.setState({ open: !this.state.open, anchorEl: e.currentTarget })
+  }
 
-  handleRequestClose = () => this.setState({ open: false })
+  handleRequestClose = () => {
+    this.setState({ open: false }, () => {
+      this.timeout = setTimeout(() => {
+        if (this.props.onRequestClose) this.props.onRequestClose()
+      }, 150)
+    })
+  }
 
   render() {
     return (
       <div>
         <List style={{ width: 64 * 4 }}>
           <ListItem
+            button
             onClick={this.handleItemClick}
             >
             <ListItemText
@@ -40,14 +49,11 @@ export class FirstLevelMenu extends PureComponent {
         </List>
         <Menu
           anchorEl={this.state.anchorEl}
-          anchorOrigin={{
-            vertical: 'top',
-            horizontal: 'right',
-          }}
+          anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
           onRequestClose={this.handleRequestClose}
           open={this.state.open}
           >
-          <MenuItem>
+          <MenuItem onClick={this.handleRequestClose}>
             <MenuItemText
               primary='Bold'
               secondary='⌘B'
@@ -88,7 +94,7 @@ export class FirstLevelMenu extends PureComponent {
               }
               />
           </MenuItem>
-          <SecondLevelMenu/>
+          <SecondLevelMenu onRequestClose={this.handleRequestClose}/>
           <MenuItem>
             <MenuItemText
               primary='Numbered list'
@@ -103,6 +109,13 @@ export class FirstLevelMenu extends PureComponent {
               secondary={
                 <i className="material-icons md-24 md-dark">arrow_right</i>
               }
+              />
+          </MenuItem>
+          <Divider nested/>
+          <MenuItem>
+            <MenuItemText
+              primary='Clear formatting'
+              secondary='⌘/'
               />
           </MenuItem>
         </Menu>

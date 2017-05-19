@@ -3,9 +3,6 @@ import React, { PureComponent } from 'react'
 
 import {
   Divider,
-  List,
-  ListItem,
-  ListItemText,
   Menu,
   MenuItem,
   MenuItemText,
@@ -22,9 +19,17 @@ export class SecondLevelMenu extends PureComponent {
     secondary: '1.2',
   }
 
-  handleItemClick = (e) => this.setState({ open: !this.state.open, anchorEl: e.currentTarget })
+  handleItemClick = (e) => {
+    this.setState({ open: !this.state.open, anchorEl: e.currentTarget })
+  }
 
-  handleRequestClose = () => this.setState({ open: false })
+  handleRequestClose = () => {
+    this.setState({ open: false }, () => {
+      this.timeout = setTimeout(() => {
+        if (this.props.onRequestClose) this.props.onRequestClose()
+      }, 150)
+    })
+  }
 
   render() {
     return (
@@ -35,14 +40,12 @@ export class SecondLevelMenu extends PureComponent {
           />
         <Menu
           anchorEl={this.state.anchorEl}
-          anchorOrigin={{
-            vertical: 'top',
-            horizontal: 'right',
-          }}
+          anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+          elevation={9}
           onRequestClose={this.handleRequestClose}
           open={this.state.open}
           >
-          <MenuItem>
+          <MenuItem onClick={this.handleRequestClose}>
             <MenuItemSpacer/>
             Single
           </MenuItem>
@@ -54,7 +57,7 @@ export class SecondLevelMenu extends PureComponent {
             <MenuItemSpacer/>
             Double
           </MenuItem>
-          <ThirdLevelMenu/>
+          <ThirdLevelMenu onRequestClose={this.handleRequestClose}/>
           <Divider nested/>
           <MenuItem>
             Add space before paragraph
@@ -75,5 +78,3 @@ export class SecondLevelMenu extends PureComponent {
 SecondLevelMenu.propTypes = {
 
 }
-
-export default SecondLevelMenu

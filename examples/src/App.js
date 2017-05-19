@@ -1,6 +1,4 @@
 
-
-
 import React, { Component } from 'react'
 import {
   Divider,
@@ -10,9 +8,6 @@ import {
   ListItemEnd,
   ListItemIcon,
   ListItemText,
-  // Menu,
-  // MenuItem,
-  // MenuItemText,
   Paper,
 } from '../../es6'
 
@@ -22,7 +17,8 @@ class App extends Component {
   render() {
     return (
       <div>
-        {/* <Paper style={{ width: 64 * 6, margin: 24 }}>
+        <FirstLevelMenu/>
+        <Paper style={{ width: 64 * 6, margin: 24 }}>
           <List>
             <ListItem>
               <ListItemText
@@ -99,41 +95,7 @@ class App extends Component {
               </ListItemEnd>
             </ListItem>
           </List>
-        </Paper> */}
-        {/* <Menu>
-          <MenuItem>
-            <MenuItemText
-              primary='Home'
-              />
-          </MenuItem>
-          <MenuItem>
-            <MenuItemText
-              primary='Back'
-              />
-          </MenuItem>
-          <MenuItem>
-            <MenuItemText
-              primary='Forward'
-              />
-          </MenuItem>
-          <Divider nested/>
-          <MenuItem>
-            <MenuItemText
-              primary='Recently closed'
-              />
-          </MenuItem>
-          <MenuItem>
-            <MenuItemText
-              primary='Google'
-              />
-          </MenuItem>
-          <MenuItem>
-            <MenuItemText
-              primary='YouTube'
-              />
-          </MenuItem>
-        </Menu> */}
-        <FirstLevelMenu/>
+        </Paper>
       </div>
     )
   }
