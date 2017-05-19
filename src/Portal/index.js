@@ -26,7 +26,7 @@ export class Portal extends PureComponent {
   }
 
   getLayer() {
-    return this.layer
+    return this.layer && this.layer.firstChild
   }
 
   renderToLayer(nextProps) {
