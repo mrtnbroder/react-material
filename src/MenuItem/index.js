@@ -13,11 +13,12 @@ const RMMenuItem = styled.div`
   cursor: pointer;
   position: relative;
 
+  opacity: 0;
+
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  transition:
-    background-color 225ms ease-in-out;
+  transition: background-color 225ms ease-in-out;
 
 
   &:hover {
