@@ -46,7 +46,7 @@ export class ThirdLevelMenu extends PureComponent {
           />
         <Menu
           anchorEl={this.state.anchorEl}
-          elevation={9}
+          elevation={10}
           onRequestClose={this.handleRequestClose}
           open={this.state.open}
           targetOrigin={{ vertical: 'top', horizontal: 'right' }}

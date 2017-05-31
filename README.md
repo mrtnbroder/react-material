@@ -14,6 +14,15 @@ Add it to your project via npm or [yarn](https://github.com/yarnpkg/yarn) (recom
 yarn add react-material
 ```
 
+## TODO
+
+manager
+  - has a stack
+  - manages z index
+  - push/pop
+  - same index = remove of others
+  - infinity stackable
+
 ## Usage
 
 ## API

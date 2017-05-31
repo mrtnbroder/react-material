@@ -7,3 +7,4 @@ export const log = (name) => (x) => console.log(name, x) || x
 export const map = (f) => (arr) => arr.map(f)
 export const noop = () => {}
 export const pipe = (...fns) => (...args) => fns.reduce((acc, fn) => fn(acc), ...args)
+export const isEmpty = (x) => x === '' || x === undefined || x === null

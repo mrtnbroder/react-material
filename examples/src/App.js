@@ -1,5 +1,9 @@
 
 import React, { Component } from 'react'
+import styled from 'styled-components'
+
+import './App.css'
+
 import {
   Divider,
   List,
@@ -8,6 +12,7 @@ import {
   ListItemEnd,
   ListItemIcon,
   ListItemText,
+  TextField,
   Paper,
 } from '../../es6'
 
@@ -16,9 +21,118 @@ import { FirstLevelMenu } from './FirstLevelMenu'
 class App extends Component {
   render() {
     return (
-      <div>
-        <FirstLevelMenu/>
-        <Paper style={{ width: 64 * 6, margin: 24 }}>
+      <div className='grid'>
+        <Paper style={{ padding: 24 }}>
+          <FirstLevelMenu/>
+          <TextField
+            id='idle-empty'
+            placeholder='Placeholder'
+            />
+          <TextField
+            id='hover'
+            label='Label'
+            helpText='Helper text'
+            />
+          <TextField
+            id='placeholder'
+            label='Label'
+            placeholder='Placeholder'
+            helpText='Helper text'
+            />
+          <TextField
+            id='focus'
+            label='Label'
+            placeholder='Placeholder'
+            helpText='Helper text'
+            defaultValue='Input'
+            />
+          <TextField
+            error='Error: Text explaining the error'
+            id='error'
+            label='Label'
+            placeholder='Placeholder'
+            helpText='Helper text'
+            defaultValue='Input'
+            minLength='10'
+            />
+          <TextField
+            defaultValue='Input'
+            helpText='Helper text'
+            icon='visibility'
+            id='icon'
+            label='Label'
+            minLength='10'
+            placeholder='Placeholder'
+            />
+          <TextField
+            disabled
+            id='disabled'
+            label='Label'
+            placeholder='Placeholder'
+            helpText='Helper text'
+            defaultValue='Input'
+            minLength='10'
+            />
+        </Paper>
+        <Paper style={{ padding: 24 }}>
+          <TextField
+            box
+            id='idle-empty-box'
+            placeholder='Placeholder'
+            />
+          <TextField
+            box
+            id='hover-box'
+            label='Label'
+            helpText='Helper text'
+            />
+          <TextField
+            box
+            id='placeholder-box'
+            label='Label'
+            placeholder='Placeholder'
+            helpText='Helper text'
+            />
+          <TextField
+            box
+            id='focus-box'
+            label='Label'
+            placeholder='Placeholder'
+            helpText='Helper text'
+            defaultValue='Input'
+            />
+          <TextField
+            box
+            error='Error: Text explaining the error'
+            id='error-box'
+            label='Label'
+            placeholder='Placeholder'
+            helpText='Helper text'
+            defaultValue='Input'
+            minLength='10'
+            />
+          <TextField
+            box
+            icon='arrow_drop_down'
+            id='icon-box'
+            label='Label'
+            placeholder='Placeholder'
+            helpText='Helper text'
+            defaultValue='Input'
+            minLength='10'
+            />
+          <TextField
+            box
+            disabled
+            id='disabled-box'
+            label='Label'
+            placeholder='Placeholder'
+            helpText='Helper text'
+            defaultValue='Input'
+            minLength='10'
+            />
+        </Paper>
+        <Paper style={{ padding: '24px 0' }}>
           <List>
             <ListItem>
               <ListItemText
@@ -66,10 +180,26 @@ class App extends Component {
               </ListItemIcon>
               <ListItemText
                 primary='aliconners@example.com'
-                secondary='Personal'
+                secondary='Personal Personal Personal Personal Personal Personal Personal Personal Personal'
                 />
               <ListItemEnd>
                 <i className="material-icons md-18 md-dark">info</i>
+              </ListItemEnd>
+            </ListItem>
+            <ListItem>
+              <ListItemIcon>
+                <i className="material-icons md-24 md-dark">backup</i>
+              </ListItemIcon>
+              <ListItemText
+                primary='Ali Conners'
+                secondary={[
+                  <span>Brunch this weekend?</span>,
+                  <br/>,
+                  <span>I'll be in your neighborhood doing errands</span>
+                ]}
+                />
+              <ListItemEnd>
+                <i className="material-icons md-24 md-dark">star_border</i>
               </ListItemEnd>
             </ListItem>
             <ListItem>

@@ -14,8 +14,8 @@ const RMListItem = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  min-height: 48px;
   padding: 12px 16px;
+  min-height: 72px;
 
   ${button}
 `

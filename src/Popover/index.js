@@ -113,7 +113,6 @@ Popover.propTypes = {
   anchorEl: PT.object,
   anchorOrigin: originShape,
   children: PT.node,
-  children: PT.node,
   elevation: elevationType,
   onRequestClose: PT.func.isRequired,
   open: PT.bool.isRequired,
