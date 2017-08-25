@@ -7,7 +7,7 @@ import {
   MenuItem,
   MenuItemText,
   MenuItemSpacer,
-} from '../../../es6'
+} from 'react-material'
 
 import { ThirdLevelMenu } from '../ThirdLevelMenu'
 

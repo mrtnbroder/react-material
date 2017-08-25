@@ -13,8 +13,9 @@ import {
   ListItemIcon,
   ListItemText,
   TextField,
+  SelectField,
   Paper,
-} from '../../es6'
+} from 'react-material'
 
 import { FirstLevelMenu } from './FirstLevelMenu'
 
@@ -121,16 +122,35 @@ class App extends Component {
             defaultValue='Input'
             minLength='10'
             />
-          <TextField
-            box
-            disabled
-            id='disabled-box'
-            label='Label'
-            placeholder='Placeholder'
-            helpText='Helper text'
-            defaultValue='Input'
-            minLength='10'
-            />
+          <div style={{
+            display: 'inline-grid',
+            gridTemplateColumns: '180px 100px 100px',
+            gridGap: 24
+          }}>
+            <TextField
+              box
+              id='city'
+              label='City'
+              defaultValue='New York'
+              />
+            <SelectField
+              box
+              icon='arrow_drop_down'
+              id='state'
+              label='State'
+              defaultValue='NY'
+              >
+              {
+                // TODO: Menu here? or as prop?
+              }
+            </SelectField>
+            <TextField
+              box
+              id='zip'
+              label='Zip Code'
+              defaultValue='10011'
+              />
+          </div>
         </Paper>
         <Paper style={{ padding: '24px 0' }}>
           <List>

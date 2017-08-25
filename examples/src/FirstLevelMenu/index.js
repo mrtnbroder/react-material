@@ -9,7 +9,7 @@ import {
   Menu,
   MenuItem,
   MenuItemText,
-} from '../../../es6'
+} from 'react-material'
 
 import { SecondLevelMenu } from '../SecondLevelMenu'
 

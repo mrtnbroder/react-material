@@ -8,7 +8,7 @@ import {
   MenuItemSpacer,
 } from 'react-material'
 
-export class ThirdLevelMenu extends PureComponent {
+export class StateMenu extends PureComponent {
 
   state = {
     anchorEl: null,
@@ -75,6 +75,6 @@ export class ThirdLevelMenu extends PureComponent {
   }
 }
 
-ThirdLevelMenu.propTypes = {
+StateMenu.propTypes = {
 
 }

@@ -10,7 +10,7 @@ import { TextFieldIcon } from '../TextFieldIcon'
 const RMAffixedInput = styled.div`
   position: relative;
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row nowrap;
 `
 
 export const AffixedInput = ({

@@ -70,7 +70,7 @@ const RMFormControl = styled.div`
     background: #304FFE;
     height: 2px;
     transform-origin: center center;
-    transition: transform .2s cubic-bezier(0, 0, .2, 1);
+    transition: transform .25s cubic-bezier(0, 0, .2, 1);
     transform: scaleX(0);
   }
 
