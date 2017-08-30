@@ -2,7 +2,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { elevations, elevationType } from '../styles/elevations'
+import { elevations, elevationShape } from '../internal/styles/elevations'
 
 const RMPaper = styled.div`
   border-radius: 2px;
@@ -13,7 +13,7 @@ const RMPaper = styled.div`
 export const Paper = RMPaper
 
 Paper.propTypes = {
-  elevation: elevationType,
+  elevation: elevationShape,
 }
 
 Paper.defaultProps = {

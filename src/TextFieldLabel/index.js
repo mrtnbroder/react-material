@@ -2,7 +2,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { Input } from '../Input'
+import Input from '../Input'
 
 const shrink = (props) => props.shrink && `
   transform: translateY(10px) scale(0.75);

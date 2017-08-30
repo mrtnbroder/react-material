@@ -1,5 +1,5 @@
 
-import { chain, compose, join, map, pipe } from '../utils/utils'
+import { chain, compose, join, map, pipe } from '../internal/utils/utils'
 
 const getOffsetLeft = (rect, horizontal) => {
   if (typeof horizontal === 'number') {

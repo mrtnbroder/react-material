@@ -3,7 +3,7 @@ const shadowKeyUmbraOpacity = 0.2
 const shadowKeyPenumbraOpacity = 0.14
 const shadowAmbientShadowOpacity = 0.12
 
-export const elevationType = (props, propName, componentName) => {
+export const elevationShape = (props, propName, componentName) => {
   if (!Number.isInteger(props[propName])) {
     return new TypeError(`${propName} must be an Integer`)
   }

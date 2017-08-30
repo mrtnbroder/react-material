@@ -8,9 +8,9 @@ import { FieldControl } from '../FieldControl'
 import { AffixedInput } from '../AffixedInput'
 import { TextFieldHelpText } from '../TextFieldHelpText'
 import { TextFieldPlaceholder } from '../TextFieldPlaceholder'
-import { FormControl } from '../FormControl'
+import FormControl from '../FormControl'
 
-import { isEmpty } from '../utils/utils'
+import { isEmpty } from '../internal/utils/utils'
 
 const RMTextField = styled.div`
   position: relative;

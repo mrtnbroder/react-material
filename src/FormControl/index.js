@@ -50,7 +50,7 @@ const disabled = (props) => props.disabled && `
   }
 `
 
-const RMFormControl = styled.div`
+export default styled.div`
   padding: 28px 0 8px;
   margin-bottom: 8px;
   position: relative;
@@ -85,5 +85,3 @@ const RMFormControl = styled.div`
   ${error}
   ${disabled}
 `
-
-export const FormControl = RMFormControl

@@ -2,15 +2,16 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { Input } from '../Input'
+import Input from '../Input'
 
 const asBox = (props) => props.box && `
   margin-right: -4px;
+  margin-top: -10px;
 `
 
 const RMTextFieldIcon = styled.span`
   flex: 0 0 auto;
-  margin-top: -10px;
+  margin-top: -4px;
   margin-left: 8px;
   ${asBox}
 `

@@ -1,7 +1,10 @@
 
 import { Children, PureComponent } from 'react'
 import PT from 'prop-types'
-import { unstable_renderSubtreeIntoContainer as render, unmountComponentAtNode } from 'react-dom' // eslint-disable-line camelcase
+import {
+  unstable_renderSubtreeIntoContainer as render,
+  unmountComponentAtNode,
+} from 'react-dom'
 
 export class Portal extends PureComponent {
 

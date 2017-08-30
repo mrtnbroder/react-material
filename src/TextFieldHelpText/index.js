@@ -2,7 +2,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { Input } from '../Input'
+import Input from '../Input'
 
 const error = (props) => props.error && `
   color: #EF5350;

@@ -2,20 +2,19 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { MenuList } from '../MenuList'
+import MenuList from '../MenuList'
 import { Popover } from '../Popover'
 
-import { elevationType } from '../styles/elevations'
+import { elevationShape } from '../internal/styles/elevations'
 
-const RMMenu = styled.div`
-  padding: 16px 0;
-`
+import menuManager from './menuManager'
 
-export const Menu = ({
+const Menu = ({
   anchorEl,
   anchorOrigin,
   children,
   elevation,
+  menuRef,
   onRequestClose,
   open,
   targetOrigin,
@@ -29,16 +28,18 @@ export const Menu = ({
     open={open}
     targetOrigin={targetOrigin}
     >
-    <MenuList {...props}>
+    <MenuList {...props} innerRef={menuRef}>
       {children}
     </MenuList>
   </Popover>
 )
 
 Menu.propTypes = {
-  elevation: elevationType,
+  elevation: elevationShape,
 }
 
 Menu.defaultProps = {
   elevation: 8,
 }
+
+export default menuManager(Menu)

@@ -2,7 +2,9 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const RMMenuItem = styled.div`
+import { fastOutSlowIn } from '../internal/styles/transitions'
+
+export const MenuItem = styled.div`
   font-family: 'Roboto', sans-serif;
   font-size: 15px;
   line-height: 24px;
@@ -18,16 +20,10 @@ const RMMenuItem = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  transition: background-color 225ms ease-in-out;
+  transition: background-color 225ms ${fastOutSlowIn};
 
 
   &:hover {
     background-color: rgba(0, 0, 0, .12);
   }
 `
-
-export const MenuItem = ({ children, ...props }) => (
-  <RMMenuItem {...props}>
-    {children}
-  </RMMenuItem>
-)

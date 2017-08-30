@@ -3,6 +3,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 const button = (props) => props.button && `
+  cursor: pointer;
   transition: background-color 250ms ease-in-out;
 
   &:hover {

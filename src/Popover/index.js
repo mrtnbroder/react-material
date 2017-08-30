@@ -1,83 +1,45 @@
 
 import React, { PureComponent } from 'react'
 import PT from 'prop-types'
-
-import rAF from 'dom-helpers/util/requestAnimationFrame'
+// import rAF from 'dom-helpers/util/requestAnimationFrame'
 
 import { Paper } from '../Paper'
-// import { Modal } from '../Modal'
-import { Portal } from '../Portal'
+import { Portal } from '../internal/Portal'
 import { Transition } from '../Transition'
-
-import { elevationType } from '../styles/elevations'
-
-//
-// TODO: This should come from the Menu Component as a prop!
-//
-import menuTransition from './menuTransition'
-const { willEnter, didEnter, willLeave, didLeave } = menuTransition()
-//
+import { elevationShape } from '../internal/styles/elevations'
+import { noop } from '../internal/utils/utils'
 
 import { getStyle } from './utils'
 import { originShape } from './propTypes'
+import transition from './menuTransition'
 
 export class Popover extends PureComponent {
 
-  constructor(props, ...args) {
-    super(props, ...args)
-
-    this.portal = {
-      getLayer: () => {}
-    }
-
-    const { willEnter, didEnter, willLeave, didLeave } = menuTransition()
-
-    this.willEnter = willEnter
-    this.didEnter = didEnter
-    this.willLeave = willLeave
-    this.didLeave = didLeave
-
-    this.state = {
-      show: false,
-      style: {
-        width: 64 * 5,
-      }
-    }
+  state = {
+    show: false,
   }
 
-  componentDidMount() {
-    this.willAppear(this.props)
-  }
+  willEnter = (targetEl, rAF, onDone) => {
+    const { anchorEl, anchorOrigin, targetOrigin } = this.props
 
-  componentDidUpdate(prevProps, prevState) {
-    if (this.props.open && this.props.open !== prevProps.open) {
-      this.willAppear(this.props)
-    }
-  }
-
-  willAppear = (props) => {
-    const { anchorEl, anchorOrigin, targetOrigin } = props
-    const targetEl = this.portal.getLayer()
-
-    if (targetEl) {
+    if (targetEl instanceof HTMLElement) {
       const style = getStyle([
         [anchorEl, anchorOrigin],
         [targetEl, targetOrigin],
       ])
 
-      this.setState({ show: true, style: { ...this.state.style, ...style } })
+      this.setState({ show: true, style }, onDone)
     }
   }
 
   didFinish = () => this.setState({ show: false })
-
-  setPortalNode = (portal) => this.portal = portal
 
   render() {
     const {
       children,
       elevation,
       open,
+      transition,
     } = this.props
     const {
       show,
@@ -86,19 +48,19 @@ export class Popover extends PureComponent {
 
     return (
       <Portal
-        open={show || open}
-        ref={this.setPortalNode}
+        // stay open until didLeave gets called from <Transition/>
+        // this is required to ensure the animation can finish before
+        // we unmount the node
+        open={open || show}
         >
         <Transition
-          didEnter={this.didEnter}
-          didLeave={this.didLeave}
           in={open}
+          {...transition}
           willEnter={this.willEnter}
-          willLeave={this.willLeave}
           didFinish={this.didFinish}
           >
           <Paper
-            style={style}
+            style={{ width: this.props.width, ...style }}
             elevation={elevation}
             >
             {children}
@@ -113,13 +75,19 @@ Popover.propTypes = {
   anchorEl: PT.object,
   anchorOrigin: originShape,
   children: PT.node,
-  elevation: elevationType,
+  elevation: elevationShape,
   onRequestClose: PT.func.isRequired,
   open: PT.bool.isRequired,
   targetOrigin: originShape,
 }
 
+
 Popover.defaultProps = {
+  //
+  // TODO: This should come from the Menu Component as a prop!
+  //
+  transition: transition(),
+  width: 64 * 5,
   anchorOrigin: {
     vertical: 'top',
     horizontal: 'left',

@@ -3,7 +3,7 @@ import PT from 'prop-types'
 import React, { PureComponent } from 'react'
 import styled from 'styled-components'
 
-import { Input } from '../Input'
+import Input from '../Input'
 import { Affix } from '../Affix'
 import { TextFieldIcon } from '../TextFieldIcon'
 

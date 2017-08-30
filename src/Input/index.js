@@ -2,7 +2,12 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const RMInput = styled.input`
+const disabled = (props) => props.disabled && `
+  cursor: not-allowed;
+  color: rgba(0, 0, 0, .42);
+`
+
+export default styled.input`
   border: 0;
   display: block;
   font: inherit;
@@ -15,13 +20,5 @@ const RMInput = styled.input`
   white-space: normal;
   flex: 1 0 auto;
 
-  ${(props) => props.disabled && `
-    cursor: not-allowed;
-    color: rgba(0, 0, 0, .42);
-  `}
+  ${disabled}
 `
-
-export const Input = RMInput
-
-Input.defaultProps = {
-}

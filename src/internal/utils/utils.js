@@ -8,3 +8,9 @@ export const map = (f) => (arr) => arr.map(f)
 export const noop = () => {}
 export const pipe = (...fns) => (...args) => fns.reduce((acc, fn) => fn(acc), ...args)
 export const isEmpty = (x) => x === '' || x === undefined || x === null
+
+// Math
+export const mean = (arr) => arr.reduce((p, c) => p + c, 0) / arr.length
+
+// React
+export const getDisplayName = (x) => x.displayName || x.name || x.type

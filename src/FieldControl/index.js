@@ -2,12 +2,12 @@
 import PT from 'prop-types'
 import React, { PureComponent } from 'react'
 
-import { isEmpty } from '../utils/utils'
+import { isEmpty, getDisplayName } from '../internal/utils/utils'
 
 export const FieldControl = (WrappedComponent) =>
   class extends PureComponent {
 
-    static displayName = `FieldControl`
+    static displayName = `FieldControl(${getDisplayName(WrappedComponent)})`
 
     static propTypes = {
       id: PT.string.isRequired,

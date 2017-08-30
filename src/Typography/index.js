@@ -2,13 +2,10 @@
 import React from 'react'
 import styled from 'styled-components'
 
-export const Typography = (props) => styled[props.component]`
+export default styled.p`
   color: rgba(0, 0, 0, .87);
-  font: 16px/24px Roboto, 'sans-serif';
-  display: block;
+  font-size: 16px;
+  line-height: 24px;
+  font-family: Roboto, 'sans-serif';
   margin: 0;
 `
-
-Typography.defaultProps = {
-  component: 'p',
-}
