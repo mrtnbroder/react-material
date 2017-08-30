@@ -1,9 +1,39 @@
 {
-  "presets": ["./presets/es2015", "stage-2", "react"],
-  "plugins": ["flow-comments", "transform-export-extensions"],
+  "presets": [
+    ["env", {
+      "targets": {
+        "browsers": [
+          "> 1%",
+          "last 2 versions"
+        ]
+      },
+      "modules": false,
+      "loose": true,
+      "useBuiltIns": true
+    }],
+    "stage-2",
+    "react"
+  ],
+  "plugins": [
+    "flow-comments",
+    "transform-export-extensions"
+  ],
   "env": {
     "cjs": {
       "plugins": ["add-module-exports"]
+    },
+    "test": {
+      "presets": [
+        ["env", {
+          "targets": {
+            "node": true
+          },
+          "loose": true,
+          "useBuiltIns": true
+        }],
+        "stage-2",
+        "react"
+      ]
     }
   }
 }
