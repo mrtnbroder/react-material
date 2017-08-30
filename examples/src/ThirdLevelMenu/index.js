@@ -21,11 +21,7 @@ export class ThirdLevelMenu extends PureComponent {
   }
 
   handleRequestClose = () => {
-    this.setState({ open: false }, () => {
-      this.timeout = setTimeout(() => {
-        if (this.props.onRequestClose) this.props.onRequestClose()
-      }, 150)
-    })
+    this.setState({ open: false })
   }
 
   componentWillUnmount() {
@@ -45,6 +41,7 @@ export class ThirdLevelMenu extends PureComponent {
           }
           />
         <Menu
+          cascading
           anchorEl={this.state.anchorEl}
           elevation={10}
           onRequestClose={this.handleRequestClose}

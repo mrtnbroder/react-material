@@ -24,11 +24,7 @@ export class SecondLevelMenu extends PureComponent {
   }
 
   handleRequestClose = () => {
-    this.setState({ open: false }, () => {
-      this.timeout = setTimeout(() => {
-        if (this.props.onRequestClose) this.props.onRequestClose()
-      }, 150)
-    })
+    this.setState({ open: false })
   }
 
   render() {
@@ -39,6 +35,7 @@ export class SecondLevelMenu extends PureComponent {
           secondary={this.state.secondary}
           />
         <Menu
+          cascading
           anchorEl={this.state.anchorEl}
           anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
           elevation={9}

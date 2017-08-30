@@ -1,6 +1,5 @@
 
-import React, { Component } from 'react'
-import styled from 'styled-components'
+import * as React from 'react'
 
 import './App.css'
 
@@ -13,18 +12,20 @@ import {
   ListItemIcon,
   ListItemText,
   TextField,
-  SelectField,
+  // SelectField,
   Paper,
 } from 'react-material'
 
 import { FirstLevelMenu } from './FirstLevelMenu'
+import StateSelect from './StateSelect'
 
-class App extends Component {
+class App extends React.Component {
   render() {
     return (
       <div className='grid'>
         <Paper style={{ padding: 24 }}>
           <FirstLevelMenu/>
+          <StateSelect/>
           <TextField
             id='idle-empty'
             placeholder='Placeholder'
@@ -133,17 +134,12 @@ class App extends Component {
               label='City'
               defaultValue='New York'
               />
-            <SelectField
+            {/* <SelectField
               box
-              icon='arrow_drop_down'
               id='state'
               label='State'
               defaultValue='NY'
-              >
-              {
-                // TODO: Menu here? or as prop?
-              }
-            </SelectField>
+              /> */}
             <TextField
               box
               id='zip'
@@ -213,9 +209,9 @@ class App extends Component {
               <ListItemText
                 primary='Ali Conners'
                 secondary={[
-                  <span>Brunch this weekend?</span>,
-                  <br/>,
-                  <span>I'll be in your neighborhood doing errands</span>
+                  <span key='1'>Brunch this weekend?</span>,
+                  <br key='2'/>,
+                  <span key='3'>I'll be in your neighborhood doing errands</span>
                 ]}
                 />
               <ListItemEnd>
