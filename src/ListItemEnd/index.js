@@ -2,15 +2,10 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const RMListItemEnd = styled.div`
+export const ListItemEnd = styled.div`
   margin-right: 16px;
   margin-left: auto;
-  margin-top: 12px;
+  margin-top: 24px;
+  line-height: 24px;
   align-self: flex-start;
 `
-
-export const ListItemEnd = ({ children }) => (
-  <RMListItemEnd>
-    {children}
-  </RMListItemEnd>
-)

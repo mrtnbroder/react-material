@@ -1,29 +1,33 @@
 
 import React from 'react'
 import styled from 'styled-components'
+import PT from 'prop-types'
 
 import Typography from '../Typography'
+import { weights } from '../Typography/typography'
 
 const Primary = styled(Typography.withComponent('h5'))`
-  font-weight: 400;
+  font-weight: ${weights.regular};
   margin: 0;
 `
 
 const Secondary = styled(Typography)`
   font-size: 14px;
-  line-height: 20px;
-  color: rgba(0, 0, 0, .54);
+  color: ${(props) => props.theme.text.secondary};
   margin: 0;
 `
 
 const RMListItemText = styled.div`
   flex-direction: column;
   display: inline-flex;
+  flex: 1 0 auto;
 `
 
-export const ListItemText = ({ primary, secondary }) => (
+const ListItemText = ({ primary, secondary }) => (
   <RMListItemText>
     {primary && <Primary>{primary}</Primary>}
     {secondary && <Secondary>{secondary}</Secondary>}
   </RMListItemText>
 )
+
+export default ListItemText

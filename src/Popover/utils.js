@@ -43,7 +43,7 @@ const getPosition = ([anchor, anchorOrigin, target, targetOrigin]) => {
   ])
 
   return {
-    position: 'absolute',
+    position: 'fixed',
     top: anchor.top + anchor.offsetTop - target.offsetTop,
     left: anchor.left + anchor.offsetLeft - target.offsetLeft,
     transformOrigin,

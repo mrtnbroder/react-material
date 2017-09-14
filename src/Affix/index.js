@@ -10,6 +10,6 @@ const side = (props) => props.prefix ? `
 export const Affix = styled.span`
   flex: 0 0 auto;
   font: inherit;
-  color: rgba(0, 0, 0, .54);
+  color: ${(props) => props.theme.text.secondary};
   ${side}
 `

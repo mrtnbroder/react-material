@@ -3,41 +3,42 @@ import React from 'react'
 import styled from 'styled-components'
 
 import Input from '../Input'
+import { fastOutSlowIn } from '../internal/styles/transitions'
+
+const box = (props) => props.box && `
+  transform: translateY(20px) scale(1);
+`
 
 const shrink = (props) => props.shrink && `
   transform: translateY(10px) scale(0.75);
 `
 
 const focused = (props) => props.focused && `
-  color: #304FFE;
+  color: ${props.theme.text.labelFocused};
 `
 
 const error = (props) => props.error && `
-  color: #EF5350;
+  color: ${props.theme.text.error};
 `
 
 const disabled = (props) => props.disabled && `
-  color: rgba(0, 0, 0, .42);
-  cursor: not-allowed;
-`
-
-const asBox = (props) => props.box && `
-  transform: translateY(20px) scale(1);
+  color: ${props.theme.text.disabled};
 `
 
 const RMTextFieldLabel = styled.label`
-  top: 0;
-  position: absolute;
+  color: ${(props) => props.theme.text.secondary};
   font: inherit;
   line-height: 16px;
-  color: rgba(0, 0, 0, 0.54);
+  position: absolute;
+  top: 0;
+  cursor: inherit;
   transform: translateY(30px) scale(1);
   transform-origin: left top;
   transition:
-    transform .2s cubic-bezier(.4, 0, .2, 1),
-    color .2s cubic-bezier(.4, 0, .2, 1);
+    transform .2s ${fastOutSlowIn},
+    color .2s ${fastOutSlowIn};
 
-  ${asBox}
+  ${box}
   ${shrink}
   ${focused}
   ${error}

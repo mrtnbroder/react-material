@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import Input from '../Input'
 
 const error = (props) => props.error && `
-  color: #EF5350;
+  color: ${props.theme.text.error};
 `
 
 const asBox = (props) => props.box && `
@@ -18,7 +18,7 @@ const RMTextFieldHelpText = styled.span`
   font-size: 12px;
   line-height: 16px;
   display: block;
-  color: rgba(0, 0, 0, 0.54);
+  color: ${(props) => props.theme.text.primary};
 
   ${asBox}
   ${error}

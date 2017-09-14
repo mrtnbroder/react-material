@@ -12,18 +12,31 @@ import {
   ListItemIcon,
   ListItemText,
   TextField,
+  Appbar,
+  Icon,
+  Typography,
   // SelectField,
-  Paper,
+  Card,
 } from 'react-material'
 
 import { FirstLevelMenu } from './FirstLevelMenu'
 import StateSelect from './StateSelect'
+import TypographyCard from './TypographyCard'
 
 class App extends React.Component {
   render() {
     return (
-      <div className='grid'>
-        <Paper style={{ padding: 24 }}>
+      <div className='appbar'>
+        <Appbar>
+          <Icon fill='rgba(255, 255, 255, 1)' icon='menu'/>
+          <Typography type='title' color='white'>
+            <span>Components</span>
+            <span>– Lists</span>
+          </Typography>
+          <Icon fill='rgba(255, 255, 255, 1)' icon='search'/>
+          <Icon fill='rgba(255, 255, 255, 1)' icon='more_vert'/>
+        </Appbar>
+        <Card className='Card Card--center'>
           <FirstLevelMenu/>
           <StateSelect/>
           <TextField
@@ -75,43 +88,73 @@ class App extends React.Component {
             defaultValue='Input'
             minLength='10'
             />
-        </Paper>
-        <Paper style={{ padding: 24 }}>
+          <TextField
+            prefix='$'
+            id='prefix'
+            label='Prefix'
+            helpText='Helper text'
+            defaultValue='Input'
+            minLength='10'
+            />
+          <TextField
+            suffix='@gmail.com'
+            id='suffix'
+            label='Suffix'
+            helpText='Helper text'
+            defaultValue='Input'
+            minLength='10'
+            />
+        </Card>
+        <TypographyCard/>
+        <Card className='Card Card--center'>
           <TextField
             box
             id='idle-empty-box'
-            placeholder='Placeholder'
-            />
-          <TextField
-            box
-            id='hover-box'
-            label='Label'
+            label='Idle & Empty'
             helpText='Helper text'
             />
           <TextField
             box
-            id='placeholder-box'
-            label='Label'
+            id='hover-box'
+            label='Hover'
+            helpText='Helper text'
+            />
+          <TextField
+            box
+            id='press-box'
+            label='Press'
             placeholder='Placeholder'
             helpText='Helper text'
             />
           <TextField
             box
             id='focus-box'
-            label='Label'
+            label='Focus'
             placeholder='Placeholder'
             helpText='Helper text'
             defaultValue='Input'
             />
           <TextField
             box
-            error='Error: Text explaining the error'
-            id='error-box'
-            label='Label'
-            placeholder='Placeholder'
+            id='idle-filled-box'
+            label='Idle & Filled'
             helpText='Helper text'
             defaultValue='Input'
+            />
+          <TextField
+            box
+            error='Error message'
+            id='error-box'
+            label='Error'
+            defaultValue='Input'
             minLength='10'
+            />
+          <TextField
+            box
+            disabled
+            id='disabled-box'
+            label='Disabled'
+            defaultValue='Input'
             />
           <TextField
             box
@@ -123,32 +166,26 @@ class App extends React.Component {
             defaultValue='Input'
             minLength='10'
             />
-          <div style={{
-            display: 'inline-grid',
-            gridTemplateColumns: '180px 100px 100px',
-            gridGap: 24
-          }}>
-            <TextField
-              box
-              id='city'
-              label='City'
-              defaultValue='New York'
-              />
-            {/* <SelectField
-              box
-              id='state'
-              label='State'
-              defaultValue='NY'
-              /> */}
-            <TextField
-              box
-              id='zip'
-              label='Zip Code'
-              defaultValue='10011'
-              />
-          </div>
-        </Paper>
-        <Paper style={{ padding: '24px 0' }}>
+          <TextField
+            box
+            prefix='€'
+            id='prefix-box'
+            label='Prefix'
+            helpText='Helper text'
+            defaultValue='Input'
+            minLength='10'
+            />
+          <TextField
+            box
+            suffix='lbs'
+            id='suffix-box'
+            label='Suffix'
+            helpText='Helper text'
+            defaultValue='Input'
+            minLength='10'
+            />
+        </Card>
+        <Card className='Card Card--center'>
           <List>
             <ListItem>
               <ListItemText
@@ -163,7 +200,7 @@ class App extends React.Component {
             </ListItem>
             <ListItem>
               <ListItemAvatar>
-                <i className="material-icons md-light">cloud_queue</i>
+                <Icon fill='rgba(255, 255, 255, 1)' icon='cloud_queue'/>
               </ListItemAvatar>
               <ListItemText
                 primary='Work'
@@ -172,18 +209,14 @@ class App extends React.Component {
             </ListItem>
             <Divider inset/>
             <ListItem>
-              <ListItemIcon>
-                <i className="material-icons md-24 md-dark">phone</i>
-              </ListItemIcon>
+              <ListItemIcon icon='phone'/>
               <ListItemText
                 primary='(650) 555-1234'
                 secondary='Work'
                 />
             </ListItem>
             <ListItem>
-              <ListItemIcon>
-                <i className="material-icons md-24 md-dark">mail</i>
-              </ListItemIcon>
+              <ListItemIcon icon='mail'/>
               <ListItemText
                 primary='aliconners@example.com'
                 secondary='Personal'
@@ -191,21 +224,15 @@ class App extends React.Component {
             </ListItem>
             <Divider inset/>
             <ListItem>
-              <ListItemIcon>
-                <i className="material-icons md-24 md-dark">backup</i>
-              </ListItemIcon>
+              <ListItemIcon icon='backup'/>
               <ListItemText
                 primary='aliconners@example.com'
                 secondary='Personal Personal Personal Personal Personal Personal Personal Personal Personal'
                 />
-              <ListItemEnd>
-                <i className="material-icons md-18 md-dark">info</i>
-              </ListItemEnd>
+              <Icon size='18px' icon='info'/>
             </ListItem>
             <ListItem>
-              <ListItemIcon>
-                <i className="material-icons md-24 md-dark">backup</i>
-              </ListItemIcon>
+              <ListItemIcon icon='backup'/>
               <ListItemText
                 primary='Ali Conners'
                 secondary={[
@@ -214,25 +241,17 @@ class App extends React.Component {
                   <span key='3'>I'll be in your neighborhood doing errands</span>
                 ]}
                 />
-              <ListItemEnd>
-                <i className="material-icons md-24 md-dark">star_border</i>
-              </ListItemEnd>
+              <Icon icon='star_border'/>
             </ListItem>
             <ListItem>
-              <ListItemIcon>
-                <i style={{color: '#0E9C57' }} className="material-icons md-24 md-dark">check_box</i>
-              </ListItemIcon>
+              <ListItemIcon fill='#0E9C57' icon='check_box'/>
               <ListItemText
                 primary='List Item selected'
                 />
-              <ListItemEnd>
-                <i className="material-icons md-24 md-dark">comment</i>
-              </ListItemEnd>
+              <Icon icon='comment'/>
             </ListItem>
             <ListItem>
-              <ListItemIcon>
-                <i className="material-icons md-24 md-dark">format_bold</i>
-              </ListItemIcon>
+              <ListItemIcon icon='format_bold'/>
               <ListItemText
                 primary='Bold'
                 />
@@ -241,7 +260,7 @@ class App extends React.Component {
               </ListItemEnd>
             </ListItem>
           </List>
-        </Paper>
+        </Card>
       </div>
     )
   }

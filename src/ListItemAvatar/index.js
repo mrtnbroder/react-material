@@ -3,7 +3,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 export default styled.div`
-  margin-right: 16px;
+  margin: 0 24px 0 8px;
   width: 40px;
   height: 40px;
   border-radius: 50%;

@@ -58,7 +58,7 @@ export class Transition extends Component {
   }
 
   //   - handleIn
-  //     if props.show AND not performing enter transition AND status is UNMOUNTED
+  //     if props.show AND not performing enter transition AND status is MOUNTED
   //       then trigger willEnter
   handleIn = (state, props) => {
     if (props.in && !isWithinEnterState(state.status) && state.status === MOUNTED) {
@@ -122,7 +122,7 @@ export class Transition extends Component {
     this.setState({ status: DID_ENTER }, () => {
       if (this.props.didEnter) {
         const node = findDOMNode(this)
-        this.props.didEnter(node, this.performAnimation, this.mounted)
+        this.props.didEnter(node, this.performAnimation, this.idle)
       } else {
         this.idle()
       }

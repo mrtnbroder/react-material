@@ -33,7 +33,7 @@ const error = (props) => props.error && `
   &::before,
   &::after {
     height: 2px;
-    background: #EF5350;
+    background: ${props.theme.text.error};
   }
 `
 
@@ -43,7 +43,7 @@ const disabled = (props) => props.disabled && `
     background: linear-gradient(to right, transparent 50%, rgba(0, 0, 0, .42) 50%);
     background-size: 4px;
     height: 1px;
-    ${props.box && `display: none;`}
+    ${props.box && 'display: none;'}
   }
   &::after {
     display: none;
@@ -62,12 +62,12 @@ export default styled.div`
     top: 55px;
     left: 0;
     width: 100%;
-    background: rgba(0, 0, 0, .42);
+    background: ${(props) => props.theme.background.textFieldUnderline};
     height: 1px;
   }
 
   &::after {
-    background: #304FFE;
+    background: ${(props) => props.theme.primary['A700']};
     height: 2px;
     transform-origin: center center;
     transition: transform .25s cubic-bezier(0, 0, .2, 1);

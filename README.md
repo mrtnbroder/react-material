@@ -14,6 +14,11 @@ Add it to your project via npm or [yarn](https://github.com/yarnpkg/yarn) (recom
 yarn add react-material
 ```
 
+# Background
+
+Performance, as close as possible to the Material-Design Spec, read and crafted carefully to support high customizeabilty, friendly consumer api
+and ease of use.
+
 ## TODO
 
 manager

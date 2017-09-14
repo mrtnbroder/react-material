@@ -1,9 +1,8 @@
 
 import React, { PureComponent } from 'react'
 import PT from 'prop-types'
-// import rAF from 'dom-helpers/util/requestAnimationFrame'
 
-import { Paper } from '../Paper'
+import Card from '../Card'
 import { Portal } from '../internal/Portal'
 import { Transition } from '../Transition'
 import { elevationShape } from '../internal/styles/elevations'
@@ -59,12 +58,12 @@ export class Popover extends PureComponent {
           willEnter={this.willEnter}
           didFinish={this.didFinish}
           >
-          <Paper
-            style={{ width: this.props.width, ...style }}
+          <Card
+            style={{ zIndex: 8, width: this.props.width, ...style }}
             elevation={elevation}
             >
             {children}
-          </Paper>
+          </Card>
         </Transition>
       </Portal>
     )

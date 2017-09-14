@@ -16,13 +16,8 @@ const RMTextField = styled.div`
   position: relative;
   cursor: text;
   width: 100%;
-  font: 16px/20px Roboto, 'sans-serif';
-  color: rgba(0, 0, 0, .87);
+  color: ${(props) => props.theme.text.primary};
   margin-bottom: 8px;
-
-  ${(props) => props.disabled && `
-    cursor: not-allowed;
-  `}
 `
 
 const querySelector = (x, node) => node.querySelector(x)
@@ -37,9 +32,10 @@ const Field = ({
   error,
   focused,
   placeholder,
+  theme,
   ...props
 }) => (
-  <RMTextField disabled={props.disabled}>
+  <RMTextField>
     <FormControl
       box={props.box}
       disabled={props.disabled}
@@ -51,26 +47,33 @@ const Field = ({
       >
       {label && (
         <TextFieldLabel
-          error={error}
-          focused={focused}
           box={props.box}
           disabled={props.disabled}
-          shrink={shrink || focused || props.prefix || props.suffix}
+          error={error}
+          focused={focused}
           htmlFor={props.id}
+          shrink={shrink || focused || props.prefix || props.suffix}
           >
           {label}
         </TextFieldLabel>
       )}
       {placeholder && (
-        <TextFieldPlaceholder show={(focused || !label) && isEmpty(props.value || props.defaultValue)}>
+        <TextFieldPlaceholder
+          show={(focused || !label) && isEmpty(props.value || props.defaultValue)}
+          >
           {placeholder}
         </TextFieldPlaceholder>
       )}
-      <AffixedInput {...props}/>
+      <AffixedInput
+        {...props}
+        />
       {children}
     </FormControl>
     {(helpText || error) && !props.disabled && (
-      <TextFieldHelpText error={error} box={props.box}>
+      <TextFieldHelpText
+        box={props.box}
+        error={error}
+        >
         {error || helpText}
       </TextFieldHelpText>
     )}
