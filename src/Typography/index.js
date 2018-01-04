@@ -3,9 +3,8 @@ import React from 'react'
 import PT from 'prop-types'
 import styled from 'styled-components'
 
-import { colorShape } from '../internal/utils/shapes'
-
-import { defaultTypography } from './typography'
+import { colorShape } from '../_internal/utils/shapes'
+import { defaultTypography } from '../_internal/styles/typography'
 
 const getColor = (props) => props.color === 'default'
   ? props.theme.text[props.type]

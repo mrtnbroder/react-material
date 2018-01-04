@@ -2,7 +2,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { fastOutSlowIn } from '../internal/styles/transitions'
+import { fastOutSlowIn } from '../_internal/styles/transitions'
 
 export const MenuItem = styled.div`
   font-family: 'Roboto', sans-serif;

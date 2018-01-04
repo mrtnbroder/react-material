@@ -9,14 +9,17 @@
       },
       "modules": false,
       "loose": true,
-      "useBuiltIns": true
+      "useBuiltIns": "usage"
     }],
     "stage-2",
     "react"
   ],
   "plugins": [
     "flow-comments",
-    "transform-export-extensions"
+    "transform-export-extensions",
+    ["webpack-alias", {
+      "config": "./webpack.config.js"
+    }]
   ],
   "env": {
     "cjs": {
@@ -29,7 +32,7 @@
             "node": true
           },
           "loose": true,
-          "useBuiltIns": true
+          "useBuiltIns": "usage"
         }]
       ]
     }

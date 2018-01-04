@@ -1,32 +1,19 @@
+/**
+ *  ThemeProvider
+ *
+ *  For the app to work, you **must** wrap your entire application into
+ *  this ThemeProvider Component.
+ *  It manages the colors and typography of the entire application.
+ *
+ *  By default, the light version is used.
+ */
 
-import React, { PureComponent } from 'react'
-import PT from 'prop-types'
-
-import Typography from '../Typography'
-import theme from '../internal/styles/theme'
-
-class ThemeProvider extends PureComponent {
-  getChildContext() {
-    return { theme: this.props.theme }
-  }
-  render() {
-    return this.props.children
-  }
-}
+import React from 'react'
+import { ThemeProvider } from 'styled-components'
+import theme from '../_internal/styles/theme'
 
 ThemeProvider.defaultProps = {
-  theme,
-}
-
-ThemeProvider.propTypes = {
-  theme: PT.object,
-}
-
-ThemeProvider.childContextTypes = {
-  theme: PT.object,
-}
-ThemeProvider.contextTypes = {
-  theme: PT.object,
+  theme
 }
 
 export default ThemeProvider

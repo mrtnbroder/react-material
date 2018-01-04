@@ -3,17 +3,31 @@
 import React, { PureComponent } from 'react'
 import PT from 'prop-types'
 import styled, { keyframes } from 'styled-components'
-import { map, isEmpty, noop } from '../internal/utils/utils'
+import { map, isEmpty, noop } from '../_internal/utils/utils'
 
-import { fastOutLinearIn, linearOutSlowIn } from '../internal/styles/transitions'
+import { fastOutLinearIn, linearOutSlowIn } from '../_internal/styles/transitions'
 
+/**
+ *  @namespace Types
+ */
+
+/**
+ *  @namespace Utils
+ */
+
+/**
+ *  @memberof Types
+ */
 type Point = {
   x: number,
   y: number,
 }
 
+/**
+ *  @memberof Types
+ */
 type Props = {
-  disabled?: boolean,
+  disabled: boolean,
   bounded: boolean, // otherwise unbounded
 }
 
@@ -25,14 +39,26 @@ const togglePairs = [
   // ['touchstart', 'touchend'],
 ]
 
+/**
+ *  Get the ClientRect of an HTMLElement
+ *  @memberof Utils
+ */
 const getClientRect = (node: HTMLElement): ClientRect =>
   node.getBoundingClientRect()
 
+/**
+ *  Get the pageX and pageY offset of the window
+ *  @memberof Utils
+ */
 const getWindowPageOffset = (): Point => ({
   x: window.pageXOffset,
   y: window.pageYOffset,
 })
 
+/**
+ *  Add a listener to an event
+ *  @memberof Utils
+ */
 const addEventListener = (
   name: string,
   fn: EventHandler,
@@ -49,7 +75,43 @@ const addEventListener = (
   return noop
 }
 
-class Ripple extends PureComponent<Props> {
+/**
+ *  Ripple Interface
+ */
+interface RippleInterface {
+  /**
+   *  The surfae element
+   *  @memberof RippleInterface
+   *  @instance
+   */
+  surface: ?HTMLElement,
+  /**
+   *  Starts the Animation
+   *  @memberof RippleInterface
+   *  @instance
+   */
+  activate: (e: Event) => void,
+  /**
+   *  Stops the Animation
+   *  @memberof RippleInterface
+   *  @instance
+   */
+  deactivate: (e: Event) => void,
+  /**
+   *  Adds the surface node to the Ripple instance
+   *  @memberof RippleInterface
+   *  @instance
+   */
+  setRef: (e: ?HTMLElement) => ?HTMLElement,
+}
+
+/**
+ *  A Ripple Element
+ *  @example
+ *  <Ripple><MyComponent/></Ripple>
+ *  @desc This is a description of the MyClass class.
+ */
+class Ripple extends PureComponent<Props> implements RippleInterface {
 
   surface = null
 
@@ -59,6 +121,7 @@ class Ripple extends PureComponent<Props> {
       addEventListener(deactivate, this.deactivate, this.surface)
     })(togglePairs)
   }
+
 
   activate = (e) => {
     console.log('e.type', e.type)

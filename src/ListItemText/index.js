@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import PT from 'prop-types'
 
 import Typography from '../Typography'
-import { weights } from '../Typography/typography'
+import { weights } from '../_internal/styles/typography'
 
 const Primary = styled(Typography.withComponent('h5'))`
   font-weight: ${weights.regular};

@@ -16,8 +16,8 @@ yarn add react-material
 
 # Background
 
-Performance, as close as possible to the Material-Design Spec, read and crafted carefully to support high customizeabilty, friendly consumer api
-and ease of use.
+High Performance, as close as possible to the Material-Design Spec, read and
+crafted carefully to support high customizability, and friendly consumer api.
 
 ## TODO
 

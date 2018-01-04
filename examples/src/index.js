@@ -3,12 +3,10 @@ import React from 'react'
 import { render } from 'react-dom'
 import App from './App'
 import './index.css'
-import { ThemeProvider } from 'styled-components'
-// import { ThemeProvider } from 'react-material'
-import theme from 'react-material/es6/internal/styles/theme'
+import { ThemeProvider } from 'react-material'
 
 render(
-  <ThemeProvider theme={theme}>
+  <ThemeProvider>
     <App/>
   </ThemeProvider>,
   document.getElementById('root')

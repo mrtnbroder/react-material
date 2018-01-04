@@ -1,4 +1,5 @@
 
+const path = require('path')
 const webpack = require('webpack')
 const { dependencies, name } = require('./package')
 
@@ -14,7 +15,7 @@ module.exports = {
 
   output: {
     library: name,
-    libraryTarget: 'umd'
+    libraryTarget: 'umd',
   },
 
   externals,
@@ -22,20 +23,28 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
+        test: /\.(js)$/,
+        include: path.resolve(__dirname, 'src'),
         loader: 'babel-loader',
         options: {
           cacheDirectory: true,
         },
       },
-    ]
+    ],
   },
 
   node: {
-    Buffer: false
+    Buffer: false,
   },
 
-  plugins
+  plugins,
+
+  resolve: {
+    alias: {
+      '#utils': path.resolve(__dirname, 'src', '_internal', 'utils'),
+      '#styles': path.resolve(__dirname, 'src', '_internal', 'styles'),
+      '#components': path.resolve(__dirname, 'src', '_internal', 'components'),
+    },
+  },
 
 }

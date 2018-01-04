@@ -5,9 +5,9 @@ import PT from 'prop-types'
 
 import Card from '../Card'
 
-import { colorShape } from '../internal/utils/shapes'
-import { up } from '../internal/styles/breakpoints'
-import theme from '../internal/styles/theme'
+import { colorShape } from '../_internal/utils/shapes'
+import { up } from '../_internal/styles/breakpoints'
+import theme from '../_internal/styles/theme'
 
 // const getDensity = (props) => props.dense && css`
 //   @media screen and (min-width: ${breakpoints.small}px) {

@@ -3,7 +3,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import Input from '../Input'
-import { fastOutSlowIn } from '../internal/styles/transitions'
+import { fastOutSlowIn } from '../_internal/styles/transitions'
 
 const box = (props) => props.box && `
   transform: translateY(20px) scale(1);

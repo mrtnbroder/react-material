@@ -4,9 +4,9 @@ import React from 'react'
 import styled from 'styled-components'
 import PT from 'prop-types'
 
-import { colorShape } from '../internal/utils/shapes'
-import { elevations, elevationShape } from '../internal/styles/elevations'
-import theme from '../internal/styles/theme'
+import { colorShape } from '../_internal/utils/shapes'
+import { elevations, elevationShape } from '../_internal/styles/elevations'
+import theme from '../_internal/styles/theme'
 
 const getRadius = (props) => props.square ? '0' : '2px'
 

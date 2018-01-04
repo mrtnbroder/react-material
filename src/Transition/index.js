@@ -4,7 +4,7 @@ import { findDOMNode } from 'react-dom'
 import PT from 'prop-types'
 import rAF from 'dom-helpers/util/requestAnimationFrame'
 
-import { noop } from '../internal/utils/utils'
+import { noop } from '../_internal/utils/utils'
 import {
   UNMOUNTED,
   MOUNTED,
@@ -61,6 +61,7 @@ export class Transition extends Component {
   //     if props.show AND not performing enter transition AND status is MOUNTED
   //       then trigger willEnter
   handleIn = (state, props) => {
+    console.log('state.status', state.status);
     if (props.in && !isWithinEnterState(state.status) && state.status === MOUNTED) {
       this.cancelAnimation()
       this.willEnter()

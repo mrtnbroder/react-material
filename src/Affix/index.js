@@ -1,10 +1,10 @@
 
 import styled from 'styled-components'
 
-const side = (props) => props.prefix ? `
-  margin-right: 4px;
-` : `
+const side = (props) => props.suffix ? `
   margin-left: 4px;
+` : `
+  margin-right: 4px;
 `
 
 export const Affix = styled.span`

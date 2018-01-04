@@ -1,6 +1,6 @@
 
 import React, { PureComponent } from 'react'
-import R from 'ramda'
+import * as R from 'ramda'
 import cars from './cars.json'
 
 import {

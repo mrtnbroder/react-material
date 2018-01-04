@@ -10,7 +10,7 @@ import { TextFieldHelpText } from '../TextFieldHelpText'
 import { TextFieldPlaceholder } from '../TextFieldPlaceholder'
 import FormControl from '../FormControl'
 
-import { isEmpty } from '../internal/utils/utils'
+import { isEmpty } from '../_internal/utils/utils'
 
 const RMTextField = styled.div`
   position: relative;

@@ -1,7 +1,7 @@
 
 import React, { PureComponent } from 'react'
 
-import { getDisplayName } from '../internal/utils/utils'
+import { getDisplayName } from '../_internal/utils/utils'
 
 // menuManager
 //   - should set correct elevation (but not override custom)

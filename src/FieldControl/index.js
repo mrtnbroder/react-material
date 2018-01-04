@@ -2,7 +2,7 @@
 import PT from 'prop-types'
 import React, { PureComponent } from 'react'
 
-import { isEmpty, getDisplayName } from '../internal/utils/utils'
+import { isEmpty, getDisplayName } from '../_internal/utils/utils'
 
 export const FieldControl = (WrappedComponent) =>
   class extends PureComponent {

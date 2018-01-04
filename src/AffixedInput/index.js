@@ -21,7 +21,7 @@ export const AffixedInput = ({
   ...props
 }) => (
   <RMAffixedInput>
-    {prefix && <Affix prefix>{prefix}</Affix>}
+    {prefix && <Affix>{prefix}</Affix>}
     <Input {...props}/>
     {suffix && <Affix suffix>{suffix}</Affix>}
     {icon && (

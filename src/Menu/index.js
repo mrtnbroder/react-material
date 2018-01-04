@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import MenuList from '../MenuList'
 import { Popover } from '../Popover'
 
-import { elevationShape } from '../internal/styles/elevations'
+import { elevationShape } from '../_internal/styles/elevations'
 
 import menuManager from './menuManager'
 

@@ -4,7 +4,7 @@ import PT from 'prop-types'
 import styled from 'styled-components'
 import { compose, withProps, withHandlers, withState, pure } from 'recompose'
 
-import { mean } from '../internal/utils/utils'
+import { mean } from '../_internal/utils/utils'
 
 import { TextField } from '../TextField'
 import Menu from '../Menu'
