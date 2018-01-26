@@ -13,7 +13,7 @@
     "build:watch": "npm run build:esm -- --watch",
     "build:docs": "documentation serve ./src/index.js -f md",
     "build:docs:watch": "npm run build:docs -- --watch",
-    "ci-test": "npm run typecheck",
+    "ci-test": "npm run test && npm run typecheck",
     "clean": "rm -rf ./dist",
     "coverage": "nyc report --cache --reporter=text-lcov | coveralls",
     "examples": "cd examples && npm start",
@@ -21,6 +21,7 @@
     "prepublish": "npm run build",
     "release": "standard-version",
     "test": "jest",
+    "test:watch": "jest --watch",
     "typecheck": "flow"
   },
   "repository": {
@@ -40,7 +41,7 @@
     "isomorphic"
   ],
   "engines": {
-    "node": ">6"
+    "node": ">=8"
   },
   "author": "Martin Broder <hello@martinbroder.com> (https://martinbroder.com)",
   "license": "ISC",
@@ -49,36 +50,38 @@
   },
   "homepage": "https://github.com/mrtnbroder/react-material#readme",
   "dependencies": {
-    "color": "^2.0.1",
-    "dom-helpers": "^3.3.1",
-    "ramda": "^0.25.0",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-motion": "^0.5.2",
-    "recompose": "^0.26.0",
-    "styled-components": "^2.4.0"
+    "color": "3.0.0",
+    "dom-helpers": "3.3.1",
+    "ramda": "0.25.0",
+    "react": "16.2.0",
+    "react-dom": "16.2.0",
+    "react-motion": "0.5.2",
+    "recompose": "0.26.0",
+    "styled-components": "3.0.2"
   },
   "devDependencies": {
     "babel-cli": "6.26.0",
     "babel-core": "6.26.0",
-    "babel-eslint": "8.1.2",
-    "babel-jest": "22.0.4",
+    "babel-eslint": "8.2.1",
+    "babel-jest": "22.1.0",
     "babel-loader": "7.1.2",
-    "babel-plugin-add-module-exports": "^0.2.1",
-    "babel-plugin-flow-comments": "^6.3.19",
+    "babel-plugin-add-module-exports": "0.2.1",
+    "babel-plugin-flow-comments": "6.3.19",
     "babel-plugin-transform-export-extensions": "6.22.0",
-    "babel-plugin-webpack-alias": "^2.1.2",
+    "babel-plugin-webpack-alias": "2.1.2",
     "babel-preset-env": "1.6.1",
     "babel-preset-react": "6.24.1",
     "babel-preset-stage-2": "6.24.1",
     "babel-register": "6.26.0",
-    "coveralls": "^3.0.0",
+    "coveralls": "3.0.0",
     "documentation": "5.3.5",
-    "flow-bin": "^0.62.0",
+    "eslint": "4.16.0",
+    "flow-bin": "0.64.0",
     "flow-typed": "2.2.3",
-    "jest": "^22.0.4",
-    "nyc": "^11.4.1",
-    "webpack": "^3.10.0"
+    "jest": "22.1.4",
+    "jest-enzyme": "4.0.2",
+    "nyc": "11.4.1",
+    "webpack": "3.10.0"
   },
   "files": [
     "*.md",
@@ -89,5 +92,8 @@
     "last 2 versions",
     "Firefox ESR",
     "IE 10"
-  ]
+  ],
+  "jest": {
+    "setupTestFrameworkScriptFile": "./node_modules/jest-enzyme/lib/index.js"
+  }
 }
