@@ -24,7 +24,7 @@ class Portal extends PureComponent {
 
   render() {
     return createPortal(
-      this.props.children,
+      this.props.open ? this.props.children : null,
       this.layer
     )
   }
@@ -32,6 +32,7 @@ class Portal extends PureComponent {
 
 Portal.propTypes = {
   children: PT.any,
+  open: PT.bool,
 }
 
 export default Portal

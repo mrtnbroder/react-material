@@ -8,7 +8,6 @@ import { noop } from '../_internal/utils/utils'
 import {
   UNMOUNTED,
   MOUNTED,
-  IDLE,
   WILL_ENTER,
   ENTERING,
   DID_ENTER,
@@ -43,7 +42,7 @@ export class Transition extends Component {
   }
 
   componentDidMount() {
-    this.setState({ status: MOUNTED })
+    this.setMounted()
   }
 
   componentDidUpdate() {
@@ -61,7 +60,6 @@ export class Transition extends Component {
   //     if props.show AND not performing enter transition AND status is MOUNTED
   //       then trigger willEnter
   handleIn = (state, props) => {
-    console.log('state.status', state.status);
     if (props.in && !isWithinEnterState(state.status) && state.status === MOUNTED) {
       this.cancelAnimation()
       this.willEnter()
@@ -82,9 +80,9 @@ export class Transition extends Component {
 
   performAnimation = (fn) => this.animationId = rAF(fn)
 
-  //   - rAF(mounted)
-  //     Child rendered, mounted state
-  mounted = () => {
+  //   - rAF(setMounted)
+  //     Child rendered, setMounted state
+  setMounted = () => {
     this.setState({ status: MOUNTED })
   }
   //   - WILL_ENTER
@@ -123,16 +121,9 @@ export class Transition extends Component {
     this.setState({ status: DID_ENTER }, () => {
       if (this.props.didEnter) {
         const node = findDOMNode(this)
-        this.props.didEnter(node, this.performAnimation, this.idle)
-      } else {
-        this.idle()
+        this.props.didEnter(node, this.performAnimation)
       }
     })
-  }
-  //   - rAF(IDLE)
-  //     Child rendered, idle state
-  idle = () => {
-    this.setState({ status: IDLE })
   }
 
   //   - rAF(WILL_LEAVE)
@@ -155,6 +146,7 @@ export class Transition extends Component {
   //     componentWillUnmount
   // leaving = this.createTransition(LEAVING, 'leaving', 'didLeave', 'didFinish')
   leaving = () => {
+    console.log('this.props.leaving', this.props.leaving);
     this.setState({ status: LEAVING }, () => {
       if (this.props.leaving) {
         const node = findDOMNode(this)
@@ -172,15 +164,15 @@ export class Transition extends Component {
     this.setState({ status: DID_LEAVE }, () => {
       if (this.props.didLeave) {
         const node = findDOMNode(this)
-        this.props.didLeave(node, this.performAnimation, this.unmounted)
+        this.props.didLeave(node, this.performAnimation, this.setUnmounted)
       } else {
-        this.unmounted()
+        this.setUnmounted()
       }
     })
   }
   //   - UNMOUNTED
   //     Child not rendered, idle
-  unmounted = () => {
+  setUnmounted = () => {
     this.animationId = null
     this.setState({ status: UNMOUNTED }, this.props.didFinish)
   }
@@ -193,7 +185,7 @@ export class Transition extends Component {
       status
     } = this.state
 
-    return status === UNMOUNTED ? null : React.Children.only(children)
+    return status === UNMOUNTED ? null : children
   }
 }
 

@@ -26,6 +26,10 @@ const originShape = PT.shape({
   vertical,
 })
 
+const instanceOf = (b) => (a) => a instanceof b
+
+const isMounted = instanceOf(HTMLElement)
+
 export class Popover extends PureComponent {
 
   static propTypes = {
@@ -55,20 +59,28 @@ export class Popover extends PureComponent {
     },
   }
 
-  state = {
-    show: false,
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      show: props.open || false,
+    }
   }
 
-  willEnter = (targetEl, rAF, onDone) => {
+  willEnter = (targetEl, rAF, entering) => {
     const { anchorEl, anchorOrigin, targetOrigin } = this.props
 
-    if (targetEl instanceof HTMLElement) {
+    if (isMounted(targetEl) && isMounted(anchorEl)) {
       const style = getStyle([
         [anchorEl, anchorOrigin],
         [targetEl, targetOrigin],
       ])
 
-      this.setState({ show: true, style }, onDone)
+      this.setState({ show: true, style }, entering)
+    } else {
+      throw new Error(`You're trying to animate a node that is not yet mounted.`
+                    + ` You are probably trying to animate before`
+                    + `componentDidMount, which is not yet supported.`)
     }
   }
 
@@ -93,21 +105,19 @@ export class Popover extends PureComponent {
         // we unmount the node
         open={open || show}
         >
-        {(open || show) && (
-          <Transition
-            in={open}
-            {...transition}
-            willEnter={this.willEnter}
-            didFinish={this.didFinish}
+        <Transition
+          in={open}
+          {...transition}
+          willEnter={this.willEnter}
+          didFinish={this.didFinish}
+          >
+          <Card
+            style={{ zIndex: 8, width: this.props.width, ...style }}
+            elevation={elevation}
             >
-            <Card
-              style={{ zIndex: 8, width: this.props.width, ...style }}
-              elevation={elevation}
-              >
-              {children}
-            </Card>
-          </Transition>
-        )}
+            {children}
+          </Card>
+        </Transition>
       </Portal>
     )
   }

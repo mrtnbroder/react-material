@@ -18,7 +18,6 @@ const RMMenu = styled(Menu)`
 `
 
 const init = (props) => {
-  // console.log('init', props)
   return {
     menuEl: null,
     anchorEl: null,
@@ -76,7 +75,7 @@ const enhanceChildrenWithOptionProps = (props) => {
     children,
     selected,
     anchorOrigin: { vertical: 'top', horizontal: 'left' },
-    targetOrigin: { vertical: (middle * 48) - 6, horizontal: 24 },
+    targetOrigin: { vertical: (middle * 48) - 9, horizontal: 24 },
   }
 }
 
