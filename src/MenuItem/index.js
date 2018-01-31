@@ -18,13 +18,10 @@ class MenuItem extends React.PureComponent {
   recursiveMap = (child) => {
     if (React.isValidElement(child)) {
       if (child.type === Menu) {
-        const open = this.props.depth.reduce((_, value, index) => {
-          // console.log('index: %d, path: %d, value: %d', index, this.props.path[index], value);
-          return this.props.path[index] === value
-        }, false)
-
         return React.cloneElement(child, {
-          open,
+          childExited: this.props.childExited,
+          childMounted: this.props.childMounted,
+          open: this.props.open,
           depth: this.props.depth,
           anchorEl: this.props.anchorEl,
           path: this.props.path,
@@ -43,6 +40,8 @@ class MenuItem extends React.PureComponent {
       path,
       anchorEl,
       open,
+      childMounted,
+      childExited,
       children,
       ...props
     } = this.props
@@ -64,7 +63,7 @@ const RMMenuItem = styled(MenuItem)`
   padding: 4px 24px;
   cursor: pointer;
   position: relative;
-  opacity: 1;
+  opacity: 0;
   display: flex;
   align-items: center;
   justify-content: flex-start;

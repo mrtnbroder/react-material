@@ -5,18 +5,13 @@ import Card from '../Card'
 import { Portal } from '../_internal/components'
 import Transition from '../Transition'
 import { elevationShape } from '../_internal/styles/elevations'
-import { noop } from '../_internal/utils/utils'
+import { noop, instanceOf } from '../_internal/utils/utils'
 
 import { getStyle } from './utils'
 import transition from './menuTransition'
 
 import type { Elevation } from '../_internal/styles/elevations'
 import type { Origin } from '../_internal/utils/shapes'
-
-const instanceOf = (b) => (a) => a instanceof b
-
-const isMounted = instanceOf(HTMLElement)
-
 
 type Props = {
   anchorEl: ?React.Node,
@@ -42,9 +37,19 @@ interface IPopover {
   willEnter(HTMLElement, (() => void) => void, () => void): void;
 }
 
+const isMounted = instanceOf(HTMLElement)
+
 class Popover extends React.PureComponent<Props, State> implements IPopover {
 
   static defaultProps = {
+    /**
+     *  Popover open state
+     */
+    open: false,
+    /**
+     *  Callback when Popover exited.
+     */
+    onRequestClose: noop,
     //
     // TODO: This should come from the Menu Component as a prop!
     //
@@ -65,7 +70,7 @@ class Popover extends React.PureComponent<Props, State> implements IPopover {
     super(props)
 
     this.state = {
-      show: props.open || false,
+      show: props.open,
       style: {},
     }
   }
@@ -92,16 +97,15 @@ class Popover extends React.PureComponent<Props, State> implements IPopover {
       this.setState({ show: true, style }, entering)
     } else {
       throw new Error([
-        '<Popover/> You\'re trying to animate a node that is not yet mounted.',
-        'You are probably trying to animate before componentDidMount, or',
-        'you did not specify an anchorEl.'
-      ].join('\n'))
+        '<Popover/> You\'re trying to animate a node that isn\'t mounted.',
+        'You are probably trying to animate before a componentDidMount()',
+        'happened, or you did not specify an anchorEl.'
+      ].join(' '))
     }
   }
 
   didFinish = () => {
-    this.setState({ show: false })
-    // this.props.notifyClosed()
+    this.setState({ show: false }, this.props.onRequestClose)
   }
 
   render() {

@@ -25,6 +25,7 @@ export const isEmpty = (x: mixed): boolean => x === '' || x === undefined || x =
 export const noop = () => {}
 export const join = (val) => (str) => str.join(val)
 export const log = (name) => (x) => console.log(name, x) || x
+export const instanceOf = (b) => (a) => a instanceof b
 
 // Math
 export const mean = (arr) => arr.reduce((p, c) => p + c, 0) / arr.length
