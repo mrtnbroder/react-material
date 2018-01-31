@@ -20,7 +20,6 @@ const asBox = (props) => props.box && `
   padding-left: 16px;
   padding-right: 16px;
   overflow: hidden;
-
   &::before,
   &::after {
     top: 54px;
@@ -40,7 +39,7 @@ const error = (props) => props.error && `
 const disabled = (props) => props.disabled && `
   &:hover::before,
   &::before {
-    background: linear-gradient(to right, transparent 50%, rgba(0, 0, 0, .42) 50%);
+    background: linear-gradient(to right, transparent 50%, rgba(0, 0, 0, 0.42) 50%);
     background-size: 4px;
     height: 1px;
     ${props.box && 'display: none;'}
@@ -70,13 +69,13 @@ export default styled.div`
     background: ${(props) => props.theme.primary['A700']};
     height: 2px;
     transform-origin: center center;
-    transition: transform .25s cubic-bezier(0, 0, .2, 1);
+    transition: transform 0.25s cubic-bezier(0, 0, 0.2, 1);
     transform: scaleX(0);
   }
 
   &:hover::before {
     height: 2px;
-    background: rgba(0, 0, 0, .87);
+    background: rgba(0, 0, 0, 0.87);
   }
 
   ${boxCenter}

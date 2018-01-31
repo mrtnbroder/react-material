@@ -5,7 +5,6 @@ import styled from 'styled-components'
 const button = (props) => props.button && `
   cursor: pointer;
   transition: background-color 250ms ease-in-out;
-
   &:hover {
     background-color: rgba(0, 0, 0, .12);
   }
@@ -16,7 +15,6 @@ const RMListItem = styled.div`
   align-items: center;
   justify-content: flex-start;
   min-height: 72px;
-
   ${button}
 `
 

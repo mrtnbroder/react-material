@@ -10,5 +10,5 @@ export default styled.div`
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  background: rgba(0, 0, 0, .26);
+  background: rgba(0, 0, 0, 0.26);
 `

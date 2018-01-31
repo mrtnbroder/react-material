@@ -22,6 +22,5 @@ export default styled.input`
   vertical-align: middle;
   white-space: normal;
   flex: 1 0 auto;
-
   ${disabled}
 `

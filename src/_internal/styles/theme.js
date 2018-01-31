@@ -12,7 +12,7 @@ import {
   black,
   white,
   indigo,
-  green,
+  pink,
 } from './colors'
 
 const light = {
@@ -30,7 +30,7 @@ const light = {
     body2: darkText.primary,
     body1: darkText.primary,
     caption: darkText.secondary,
-    button: darkText.primary,
+    button: lightText.primary,
     error: red['A400'],
     // Text Fields
     // Source: https://material.io/guidelines/components/text-fields.html#text-fields-states
@@ -51,6 +51,9 @@ const light = {
     body: grey[50],
     card: white,
     textFieldUnderline: color(black).alpha(0.42).string(),
+    button: darkText.primary,
+    buttonHover: color(black).darken(0.12).string(),
+    buttonFlatHover: color(black).alpha(0.12).string(),
   },
 }
 
@@ -69,7 +72,7 @@ const dark = {
     body2: lightText.primary,
     body1: lightText.primary,
     caption: lightText.secondary,
-    button: lightText.primary,
+    button: darkText.primary,
     error: red['A400'],
     // Text Fields
     // Source: https://material.io/guidelines/components/text-fields.html#text-fields-states
@@ -90,6 +93,9 @@ const dark = {
     body: '#303030',
     card: grey[800],
     textFieldUnderline: color(white).alpha(0.7).string(),
+    button: lightText.primary,
+    buttonHover: color(white).darken(0.12).string(),
+    buttonFlatHover: color(white).alpha(0.12).string(),
   },
 }
 
@@ -98,8 +104,12 @@ export const themeBuilder = (primary, secondary, defaultTheme) => R.mergeDeepRig
   secondary,
   background: {
     appBar: primary[600],
+    button: secondary['A400'],
+    buttonHover: color(secondary['A400']).darken(0.12).string(),
+    buttonFlatHover: color(secondary['A400']).alpha(0.12).string(),
   },
   text: {
+    // Button
     // Source: https://material.io/guidelines/components/text-fields.html#text-fields-states
     // Label text
     // Light theme: 87% primary color (Dark A700)
@@ -111,4 +121,4 @@ export const themeBuilder = (primary, secondary, defaultTheme) => R.mergeDeepRig
   }
 })
 
-export default themeBuilder(indigo, green, light)
+export default themeBuilder(indigo, pink, light)

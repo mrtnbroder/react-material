@@ -13,11 +13,10 @@ const show = (props) => props.show && `
 const RMTextFieldPlaceholder = styled.span`
   font: inherit;
   color: rgba(0, 0, 0, 0.42);
-  transition: opacity 0.18s cubic-bezier(.4, 0, .2, 1);
+  transition: opacity 0.18s cubic-bezier(0.4, 0, 0.2, 1);
   opacity: 0;
   pointer-events: none;
   position: absolute;
-
   ${show}
   ${asBox}
 `

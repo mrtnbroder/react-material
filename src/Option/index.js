@@ -2,7 +2,7 @@
 import React, { PureComponent } from 'react'
 import styled from 'styled-components'
 
-import { MenuItem } from '../MenuItem'
+import MenuItem from '../MenuItem'
 
 const isSelected = (props) => props.isSelected ? `
   color: rgba(0, 0, 0, .87);

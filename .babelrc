@@ -17,6 +17,7 @@
   "plugins": [
     "flow-comments",
     "transform-export-extensions",
+    "babel-plugin-styled-components",
     ["webpack-alias", {
       "config": "./webpack.config.js"
     }]

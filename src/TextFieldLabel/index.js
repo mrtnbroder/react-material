@@ -35,9 +35,8 @@ const RMTextFieldLabel = styled.label`
   transform: translateY(30px) scale(1);
   transform-origin: left top;
   transition:
-    transform .2s ${fastOutSlowIn},
-    color .2s ${fastOutSlowIn};
-
+    transform 0.2s ${fastOutSlowIn},
+    color 0.2s ${fastOutSlowIn};
   ${box}
   ${shrink}
   ${focused}

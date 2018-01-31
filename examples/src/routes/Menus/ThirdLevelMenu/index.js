@@ -1,5 +1,5 @@
 
-import React, { PureComponent } from 'react'
+import * as React from 'react'
 
 import {
   Menu,
@@ -8,7 +8,7 @@ import {
   MenuItemSpacer,
 } from 'react-material'
 
-export class ThirdLevelMenu extends PureComponent {
+class ThirdLevelMenu extends React.PureComponent {
 
   state = {
     anchorEl: null,
@@ -17,15 +17,20 @@ export class ThirdLevelMenu extends PureComponent {
   }
 
   handleItemClick = (e) => {
-    this.setState({ open: !this.state.open, anchorEl: e.currentTarget })
+    e.stopPropagation()
+    e.preventDefault()
+    if (e.target === e.currentTarget) {
+      this.setState({ open: !this.state.open, anchorEl: e.currentTarget })
+    }
   }
 
-  handleRequestClose = () => {
-    this.setState({ open: false })
-  }
-
-  componentWillUnmount() {
-    clearTimeout(this.timeout)
+  handleRequestClose = (e) => {
+    console.log('ThirdLevelMenu');
+    e.stopPropagation()
+    e.preventDefault()
+    if (e.target === this.state.anchorEl) {
+      this.setState({ open: false })
+    }
   }
 
   render() {
@@ -43,7 +48,6 @@ export class ThirdLevelMenu extends PureComponent {
         <Menu
           cascading
           anchorEl={this.state.anchorEl}
-          elevation={10}
           onRequestClose={this.handleRequestClose}
           open={this.state.open}
           targetOrigin={{ vertical: 'top', horizontal: 'right' }}
@@ -75,3 +79,5 @@ export class ThirdLevelMenu extends PureComponent {
 ThirdLevelMenu.propTypes = {
 
 }
+
+export default ThirdLevelMenu

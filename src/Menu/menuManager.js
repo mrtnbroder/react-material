@@ -1,35 +1,50 @@
 
-import React, { PureComponent } from 'react'
-
-import { getDisplayName } from '../_internal/utils/utils'
-
 // menuManager
-//   - should set correct elevation (but not override custom)
+//   - should provide correct elevation (but not override custom)
 //   - should handle closing of nested menus
 //      - close sibling menus (menus on the same level)
 //      - close deepest menu first and continue upwards
 //      - close menu on MenuItem click
 
-const menuManager = (WrappedComponent) =>
-  class extends PureComponent {
+const length = (x) => x.length
+const eq = (x) => (y) => x === y
+const findIndex = (f, x) => x.findIndex(f)
 
-    static displayName = `MenuManager(${getDisplayName(WrappedComponent)})`
+class MenuManager {
 
-    stack = []
+  stack = {}
 
-    add(key, item) {
-
-    }
-
-    remove(key, item) {
-
-    }
-
-    render() {
-      return (
-        <WrappedComponent {...this.props}/>
-      )
+  push = (depth, item) => {
+    return this.stack[depth] = {
+      depth,
+      item,
+      siblings: [],
     }
   }
 
-export default menuManager
+  pop = (item) => {
+    return this.stack[depth] = null
+  }
+
+  peek = () => {
+    const l = length(this.stack)
+    return this.stack[l - 1]
+  }
+
+  handleRequestClose = (item) => {
+    // find item position
+    // close deepest node and then siblings
+  }
+
+  getElevation = (item) => {
+    // const eqItem = eq(item)
+    // const idx = findIndex(eqItem, this.stack)
+    // const elevation = (idx === -1 ? 0 : idx) + 8
+    // return elevation
+  }
+
+}
+
+MenuManager.of = () => new MenuManager()
+
+export default MenuManager

@@ -16,13 +16,7 @@ export default () => {
     const scaleX = 1 - x
     const scaleY = 1 - y
 
-    // performance optimizations
-    node.style.willChange = `transform`
     node.style.transform = `scale(${scaleX}, ${scaleY})`
-
-    Array.from(node.firstChild.children).forEach((x, i) => {
-      x.style.willChange = 'opacity'
-    })
 
     rAF(() => enterLoop(enterX.x(), enterY.x(), node, rAF, cb))
   }
@@ -62,10 +56,10 @@ export default () => {
     Array.from(node.firstChild.children).forEach((x, i) => {
       const delayFraction = i * (TRANSITION_DURATION / childrenSize)
 
-      x.style.opacity = 1
       x.style.transitionProperty = `opacity`
       x.style.transitionTimingFunction = `cubic-bezier(.4, 0, 1, 1)`
       x.style.transitionDelay = `${delayFraction.toFixed(3)}s`
+      x.style.opacity = 1
     })
 
     rAF(() => enterLoop(enterX.x(), enterY.x(), node, rAF, cb))

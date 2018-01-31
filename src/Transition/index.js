@@ -20,6 +20,8 @@ import {
 
 export class Transition extends Component {
 
+  static displayName = 'Transition'
+
   // Transition State:
   //   - UNMOUNTED
   //     Child not rendered, idle
@@ -35,6 +37,7 @@ export class Transition extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     if (nextState.status !== this.state.status
       || nextProps.in !== this.props.in
+      || nextProps.children !== this.props.children // TODO: optimize this check?
     ) {
       return true
     }
@@ -146,7 +149,6 @@ export class Transition extends Component {
   //     componentWillUnmount
   // leaving = this.createTransition(LEAVING, 'leaving', 'didLeave', 'didFinish')
   leaving = () => {
-    console.log('this.props.leaving', this.props.leaving);
     this.setState({ status: LEAVING }, () => {
       if (this.props.leaving) {
         const node = findDOMNode(this)
@@ -201,3 +203,5 @@ Transition.propTypes = {
 Transition.defaultProps = {
   didFinish: noop,
 }
+
+export default Transition

@@ -19,7 +19,6 @@ const RMTextFieldHelpText = styled.span`
   line-height: 16px;
   display: block;
   color: ${(props) => props.theme.text.primary};
-
   ${asBox}
   ${error}
 `

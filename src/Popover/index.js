@@ -1,46 +1,48 @@
-
-import React, { PureComponent } from 'react'
-import PT from 'prop-types'
+// @flow
+import * as React from 'react'
 
 import Card from '../Card'
 import { Portal } from '../_internal/components'
-import { Transition } from '../Transition'
+import Transition from '../Transition'
 import { elevationShape } from '../_internal/styles/elevations'
 import { noop } from '../_internal/utils/utils'
 
 import { getStyle } from './utils'
 import transition from './menuTransition'
 
-const horizontal = PT.oneOfType([
-  PT.oneOf([ 'left', 'center', 'right' ]),
-  PT.number,
-]).isRequired
-
-const vertical = PT.oneOfType([
-  PT.oneOf([ 'top', 'center', 'bottom' ]),
-  PT.number,
-]).isRequired
-
-const originShape = PT.shape({
-  horizontal,
-  vertical,
-})
+import type { Elevation } from '../_internal/styles/elevations'
+import type { Origin } from '../_internal/utils/shapes'
 
 const instanceOf = (b) => (a) => a instanceof b
 
 const isMounted = instanceOf(HTMLElement)
 
-export class Popover extends PureComponent {
 
-  static propTypes = {
-    anchorEl: PT.object,
-    anchorOrigin: originShape,
-    children: PT.node,
-    elevation: elevationShape,
-    onRequestClose: PT.func.isRequired,
-    open: PT.bool.isRequired,
-    targetOrigin: originShape,
-  }
+type Props = {
+  anchorEl: ?React.Node,
+  anchorOrigin: Origin,
+  children: React.Node,
+  elevation: Elevation,
+  onRequestClose: () => void,
+  open: boolean,
+  targetOrigin: Origin,
+  // TODO: Maybe remove this from here as well?!?!?
+  transition: any,
+  // TODO: remove this
+  width: number
+  // ENDTODO
+}
+
+type State = {
+  show: boolean,
+  style: Object,
+}
+
+interface IPopover {
+  willEnter(HTMLElement, (() => void) => void, () => void): void;
+}
+
+class Popover extends React.PureComponent<Props, State> implements IPopover {
 
   static defaultProps = {
     //
@@ -59,11 +61,12 @@ export class Popover extends PureComponent {
     },
   }
 
-  constructor(props) {
+  constructor(props: Props) {
     super(props)
 
     this.state = {
       show: props.open || false,
+      style: {},
     }
   }
 
@@ -76,15 +79,30 @@ export class Popover extends PureComponent {
         [targetEl, targetOrigin],
       ])
 
+      // performance optimization
+      targetEl.style.willChange = `transform`
+      const children = targetEl.firstChild && targetEl.firstChild.children
+
+      Array.from(children || []).forEach((x, i) => {
+        x.style.opacity = '0'
+        x.style.willChange = 'opacity'
+      })
+      // performance optimization end
+
       this.setState({ show: true, style }, entering)
     } else {
-      throw new Error(`You're trying to animate a node that is not yet mounted.`
-                    + ` You are probably trying to animate before`
-                    + `componentDidMount, which is not yet supported.`)
+      throw new Error([
+        '<Popover/> You\'re trying to animate a node that is not yet mounted.',
+        'You are probably trying to animate before componentDidMount, or',
+        'you did not specify an anchorEl.'
+      ].join('\n'))
     }
   }
 
-  didFinish = () => this.setState({ show: false })
+  didFinish = () => {
+    this.setState({ show: false })
+    // this.props.notifyClosed()
+  }
 
   render() {
     const {

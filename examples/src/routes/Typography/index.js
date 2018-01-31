@@ -1,6 +1,8 @@
 
 import * as React from 'react'
 
+import '../../App.css'
+
 import {
   Typography,
   Card,

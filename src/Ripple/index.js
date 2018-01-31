@@ -172,7 +172,6 @@ const RMRipple = styled(Ripple)`
   height: 100%;
   outline: none;
   ${'' /* overflow: hidden; */}
-
   &::after,
   &::before {
     will-change: transform, opacity;
@@ -186,7 +185,6 @@ const RMRipple = styled(Ripple)`
     opacity: 0.16;
     transition: background-color 125ms ${linearOutSlowIn};
   }
-
   &:focus::after {
     background-color: currentColor;
     animation: 3s ${breath} ${fastOutLinearIn} infinite;

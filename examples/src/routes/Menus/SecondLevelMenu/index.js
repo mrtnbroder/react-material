@@ -1,5 +1,5 @@
 
-import React, { PureComponent } from 'react'
+import * as React from 'react'
 
 import {
   Divider,
@@ -9,9 +9,9 @@ import {
   MenuItemSpacer,
 } from 'react-material'
 
-import { ThirdLevelMenu } from '../ThirdLevelMenu'
+import ThirdLevelMenu from '../ThirdLevelMenu'
 
-export class SecondLevelMenu extends PureComponent {
+class SecondLevelMenu extends React.PureComponent {
 
   state = {
     anchorEl: null,
@@ -20,11 +20,20 @@ export class SecondLevelMenu extends PureComponent {
   }
 
   handleItemClick = (e) => {
-    this.setState({ open: !this.state.open, anchorEl: e.currentTarget })
+    e.stopPropagation()
+    e.preventDefault()
+    if (e.target === e.currentTarget) {
+      this.setState({ open: !this.state.open, anchorEl: e.currentTarget })
+    }
   }
 
-  handleRequestClose = () => {
-    this.setState({ open: false })
+  handleRequestClose = (e) => {
+    console.log('SecondLevelMenu');
+    e.stopPropagation()
+    e.preventDefault()
+    if (e.target === this.state.anchorEl) {
+      this.setState({ open: false })
+    }
   }
 
   render() {
@@ -38,7 +47,6 @@ export class SecondLevelMenu extends PureComponent {
           cascading
           anchorEl={this.state.anchorEl}
           anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-          elevation={9}
           onRequestClose={this.handleRequestClose}
           open={this.state.open}
           >
@@ -54,7 +62,7 @@ export class SecondLevelMenu extends PureComponent {
             <MenuItemSpacer/>
             Double
           </MenuItem>
-          <ThirdLevelMenu onRequestClose={this.handleRequestClose}/>
+          <ThirdLevelMenu/>
           <Divider nested/>
           <MenuItem>
             Add space before paragraph
@@ -75,3 +83,5 @@ export class SecondLevelMenu extends PureComponent {
 SecondLevelMenu.propTypes = {
 
 }
+
+export default SecondLevelMenu

@@ -67,13 +67,11 @@ injectGlobal`
     ${'' /* TODO: REMOVE THIS HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */}
     padding-top: 56px;
   }
-
   @media screen and (orientation: landscape) {
     body {
       padding-top: 48px;
     }
   }
-
   ${up('sm')} {
     body {
       padding-top: 64px;

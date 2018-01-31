@@ -1,5 +1,5 @@
 
-import React, { PureComponent } from 'react'
+import * as React from 'react'
 
 import {
   Divider,
@@ -7,13 +7,14 @@ import {
   ListItem,
   ListItemText,
   Menu,
+  MenuManager,
   MenuItem,
   MenuItemText,
 } from 'react-material'
 
-import { SecondLevelMenu } from '../SecondLevelMenu'
+import SecondLevelMenu from '../SecondLevelMenu'
 
-export class FirstLevelMenu extends PureComponent {
+class FirstLevelMenu extends React.PureComponent {
 
   state = {
     anchorEl: null,
@@ -22,21 +23,28 @@ export class FirstLevelMenu extends PureComponent {
   }
 
   handleItemClick = (e) => {
+    e.stopPropagation()
+    e.preventDefault()
     this.setState({ open: !this.state.open, anchorEl: e.currentTarget })
   }
 
-  handleRequestClose = () => {
-    this.setState({ open: false })
+  handleRequestClose = (e) => {
+    console.log('FirstLevelMenu');
+    e.stopPropagation()
+    e.preventDefault()
+    if (e.target === this.state.anchorEl) {
+      this.setState({ open: false })
+    }
   }
 
   render() {
     return (
-      <div>
+      <MenuManager>
         <List style={{ width: 64 * 4 }}>
           <ListItem
             button
             onClick={this.handleItemClick}
-          >
+            >
             <ListItemText
               primary='Notification settings'
               secondary={this.state.secondary}
@@ -91,7 +99,7 @@ export class FirstLevelMenu extends PureComponent {
               }
               />
           </MenuItem>
-          <SecondLevelMenu onRequestClose={this.handleRequestClose}/>
+          <SecondLevelMenu/>
           <MenuItem>
             <MenuItemText
               primary='Numbered list'
@@ -116,7 +124,7 @@ export class FirstLevelMenu extends PureComponent {
               />
           </MenuItem>
         </Menu>
-      </div>
+      </MenuManager>
     )
   }
 }
