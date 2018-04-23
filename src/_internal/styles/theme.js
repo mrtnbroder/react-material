@@ -102,6 +102,9 @@ const dark = {
 export const themeBuilder = (primary, secondary, defaultTheme) => R.mergeDeepRight(defaultTheme, {
   primary,
   secondary,
+  grey,
+  black,
+  white,
   background: {
     appBar: primary[600],
     button: secondary['A400'],

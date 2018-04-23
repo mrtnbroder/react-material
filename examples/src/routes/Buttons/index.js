@@ -17,12 +17,14 @@ class App extends React.Component {
             Flat Buttons
           </header>
           <main>
-            <Button flat>Default</Button>
-            <Button flat dense>Default</Button>
-            <Button flat>Primary</Button>
-            <Button flat dense>Primary</Button>
-            <Button flat>Secondary</Button>
-            <Button flat dense>Secondary</Button>
+            <Button appearance='flat'>Default</Button>
+            <Button appearance='flat'>Primary</Button>
+            <Button appearance='flat'>Secondary</Button>
+            <Button appearance='flat'>Danger</Button>
+            <Button appearance='flat'>Warning</Button>
+            <Button appearance='flat'>Info</Button>
+            <Button appearance='flat' disabled>Disabled</Button>
+            <Button appearance='flat' dense>Dense</Button>
           </main>
         </article>
         <article>
@@ -31,11 +33,13 @@ class App extends React.Component {
           </header>
           <main>
             <Button>Default</Button>
-            <Button dense>Default</Button>
             <Button>Primary</Button>
-            <Button dense>Primary</Button>
             <Button>Secondary</Button>
-            <Button dense>Secondary</Button>
+            <Button>Danger</Button>
+            <Button>Warning</Button>
+            <Button>Info</Button>
+            <Button disabled>Disabled</Button>
+            <Button dense>Dense</Button>
           </main>
         </article>
       </Card>

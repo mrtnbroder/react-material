@@ -6,55 +6,36 @@ import Menu from '../Menu'
 
 import { fastOutSlowIn } from '../_internal/styles/transitions'
 
-class MenuItem extends React.PureComponent {
+type MenuItemProps = {
+  anchorEl?: React.Node,
+  anchorOrigin?: Origin,
+  children?: React.ChildrenArray<React.Element<*>>,
+}
+
+class MenuItem extends React.PureComponent<MenuItemProps> {
 
   handleClick = (e) => {
     e.stopPropagation()
     e.preventDefault()
 
-    this.props.onClick(e, this.props.depth)
-  }
-
-  recursiveMap = (child) => {
-    if (React.isValidElement(child)) {
-      if (child.type === Menu) {
-        return React.cloneElement(child, {
-          childExited: this.props.childExited,
-          childMounted: this.props.childMounted,
-          open: this.props.open,
-          depth: this.props.depth,
-          anchorEl: this.props.anchorEl,
-          path: this.props.path,
-          setPath: this.props.setPath,
-          children: React.Children.map(child.props.children, this.recursiveMap),
-        })
-      }
+    if (this.props.onClick) {
+      this.props.onClick(e)
     }
-    return child
   }
 
   render() {
     const {
-      depth,
-      setPath,
-      path,
       anchorEl,
-      open,
-      childMounted,
-      childExited,
-      children,
       ...props
     } = this.props
 
     return (
-      <div {...props} onClick={this.handleClick}>
-        {React.Children.map(children, this.recursiveMap)}
-      </div>
+      <RMMenuItem {...props}/>
     )
   }
 }
 
-const RMMenuItem = styled(MenuItem)`
+const RMMenuItem = styled.div`
   font-family: 'Roboto', sans-serif;
   font-size: 15px;
   line-height: 24px;

@@ -24,7 +24,7 @@ type Props = {
   // TODO: Maybe remove this from here as well?!?!?
   transition: any,
   // TODO: remove this
-  width: number
+  width: number,
   // ENDTODO
 }
 

@@ -1,4 +1,3 @@
-
 import * as React from 'react'
 
 import '../../App.css'
@@ -8,6 +7,7 @@ import {
   MenuItemText,
   MenuItemSpacer,
   Menu,
+  MenuManager,
   Divider,
   List,
   ListItem,
@@ -15,106 +15,218 @@ import {
   Card,
 } from 'react-material'
 
-import menuItems from './menu'
-
-const mkMenuItem = (item, children) => {
-  const secondary = item.secondary
-    ? typeof item.secondary === 'object'
-      ? <i className={item.secondary.classes}>{item.secondary.icon}</i>
-      : item.secondary
-    : null
-  const spacer = item.spacer
-    ? typeof item.spacer === 'object'
-      ? <MenuItemSpacer>
-          <i className={item.spacer.text.classes}>{item.spacer.text.icon}</i>
-        </MenuItemSpacer>
-      : <MenuItemSpacer/>
-    : null
-  const text = (item.primary || item.secondary) && (
-    <MenuItemText primary={item.primary} secondary={secondary}/>
-  )
-
-  return (
-    <MenuItem key={item.key}>
-      {spacer}
-      {text}
-      {children}
-    </MenuItem>
-  )
-}
-
-const mkMenu = (item) => {
-  if (item.type === 'item') {
-    return mkMenuItem(item)
-  }
-
-  if (item.type === 'divider') {
-    return (
-      <Divider key={item.key} nested={item.nested}/>
-    )
-  }
-
-  if (item.type === 'menu-item') {
-    const menu = (
-      <Menu
-        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-        cascading={item.cascading}
-        key={item.key}
-        >
-        {item.menuItems.map(mkMenu)}
-      </Menu>
-    )
-
-    return mkMenuItem(item, menu)
-  }
-}
-
-const menu = menuItems.map(mkMenu)
-
 class App extends React.PureComponent {
-
-  state = {
-    anchorEl: null,
-    path: [],
-    open: false,
-  }
-
-  handleItemClick = (e) => {
-    this.setState({ anchorEl: e.currentTarget, path: [0], open: true, })
-  }
-
-  handleRequestClose = (e) => {
-    this.setState({ anchorEl: null, path: [], open: false, })
-  }
-
-  setPath = (path) => {
-    console.log('setPath', path)
-    this.setState({ path })
-  }
-
   render() {
     return (
-      <Card className='Card Card--center'>
+      <Card className="Card Card--center">
         <List style={{ width: 64 * 4 }}>
-          <ListItem
-            button
-            onClick={this.handleItemClick}
-            >
-            <ListItemText
-              primary='Notification settings'
-              secondary='Every 2 Weeks'
-            />
-          </ListItem>
+          <MenuManager>
+            <Menu
+              toggle={
+                <ListItem button>
+                  <ListItemText
+                    primary="Notification settings"
+                    secondary="Every 2 Weeks"
+                  />
+                </ListItem>
+              }>
+              <MenuItem>
+                <MenuItemText
+                  primary='Bold'
+                  secondary='⌘B'
+                  />
+              </MenuItem>
+              <MenuItem>
+                <MenuItemText
+                  primary='Italic'
+                  secondary='⌘I'
+                  />
+              </MenuItem>
+              <MenuItem>
+                <MenuItemText
+                  primary='Underline'
+                  secondary='⌘U'
+                  />
+              </MenuItem>
+              <MenuItem>
+                <MenuItemText
+                  primary='Strikethrough'
+                  secondary='Alt+Shift+5'
+                  />
+              </MenuItem>
+              <Divider nested/>
+              <MenuItem>
+                <MenuItemText
+                  primary='Paragraph styles'
+                  secondary={
+                    <i className="material-icons md-24 md-dark">arrow_right</i>
+                  }
+                  />
+              </MenuItem>
+              <Menu
+                toggle={
+                  <MenuItem>
+                    <MenuItemText
+                      primary='Align'
+                      secondary={
+                        <i className="material-icons md-24 md-dark">arrow_right</i>
+                      }
+                      />
+                  </MenuItem>
+                }
+                >
+                <MenuItem>
+                  <MenuItemSpacer/>
+                  Single
+                </MenuItem>
+                <MenuItem>
+                  <MenuItemSpacer/>
+                  1.15
+                </MenuItem>
+                <MenuItem>
+                  <MenuItemSpacer/>
+                  Double
+                </MenuItem>
+                  <Menu
+                    toggle={
+                      <MenuItem>
+                        <MenuItemSpacer>
+                          <i className="material-icons md-24 md-dark">check</i>
+                        </MenuItemSpacer>
+                        <MenuItemText
+                          primary='Custom: 1.2'
+                          secondary={
+                            <i className="material-icons md-24 md-dark">arrow_right</i>
+                          }
+                          />
+                      </MenuItem>
+                    }
+                    >
+                    <MenuItem>
+                      <MenuItemText
+                        primary='Line Spacing'
+                        secondary='1.2'
+                      />
+                    </MenuItem>
+                    <MenuItem>
+                      <MenuItemText
+                        primary='Paragraph spacing before'
+                        secondary='1.2'
+                      />
+                    </MenuItem>
+                    <MenuItem>
+                      <MenuItemText
+                        primary='Paragraph spacing after'
+                        secondary='1.5'
+                      />
+                    </MenuItem>
+                  </Menu>
+                <Divider nested/>
+                <MenuItem>
+                  Add space before paragraph
+                </MenuItem>
+                <MenuItem>
+                  Add space after paragraph
+                </MenuItem>
+                <Divider nested/>
+                <MenuItem>
+                  Custom spacing…
+                </MenuItem>
+              </Menu>
+              <Menu
+                toggle={
+                  <MenuItem>
+                    <MenuItemText
+                      primary='Line spacing'
+                      secondary='1.2'
+                      />
+                  </MenuItem>
+                }
+                >
+                <MenuItem>
+                  <MenuItemSpacer/>
+                  Single
+                </MenuItem>
+                <MenuItem>
+                  <MenuItemSpacer/>
+                  1.15
+                </MenuItem>
+                <MenuItem>
+                  <MenuItemSpacer/>
+                  Double
+                </MenuItem>
+                  <Menu
+                    toggle={
+                      <MenuItem>
+                        <MenuItemSpacer>
+                          <i className="material-icons md-24 md-dark">check</i>
+                        </MenuItemSpacer>
+                        <MenuItemText
+                          primary='Custom: 1.2'
+                          secondary={
+                            <i className="material-icons md-24 md-dark">arrow_right</i>
+                          }
+                          />
+                      </MenuItem>
+                    }
+                    >
+                    <MenuItem>
+                      <MenuItemText
+                        primary='Line Spacing'
+                        secondary='1.2'
+                      />
+                    </MenuItem>
+                    <MenuItem>
+                      <MenuItemText
+                        primary='Paragraph spacing before'
+                        secondary='1.2'
+                      />
+                    </MenuItem>
+                    <MenuItem>
+                      <MenuItemText
+                        primary='Paragraph spacing after'
+                        secondary='1.5'
+                      />
+                    </MenuItem>
+                  </Menu>
+                <Divider nested/>
+                <MenuItem>
+                  Add space before paragraph
+                </MenuItem>
+                <MenuItem>
+                  Add space after paragraph
+                </MenuItem>
+                <Divider nested/>
+                <MenuItem>
+                  Custom spacing…
+                </MenuItem>
+              </Menu>
+              <MenuItem>
+                <MenuItemText
+                  primary='Numbered list'
+                  secondary={
+                    <i className="material-icons md-24 md-dark">arrow_right</i>
+                  }
+                  />
+              </MenuItem>
+              <MenuItem>
+                <MenuItemText
+                  primary='List options'
+                  secondary={
+                    <i className="material-icons md-24 md-dark">arrow_right</i>
+                  }
+                  />
+              </MenuItem>
+              <Divider nested/>
+              <MenuItem>
+                <MenuItemText
+                  primary='Clear formatting'
+                  secondary='⌘/'
+                  />
+              </MenuItem>
+            </Menu>
+          </MenuManager>
         </List>
-        <Menu
-          cascading
-          path={this.state.path}
-          setPath={this.setPath}
-          open={this.state.open}
-          anchorEl={this.state.anchorEl}
-          >
-          {menu}
-        </Menu>
       </Card>
     )
   }
