@@ -1,13 +1,13 @@
-
-import React from 'react'
+// @flow
+import * as React from 'react'
 import styled, { injectGlobal } from 'styled-components'
 import PT from 'prop-types'
 
 import Card from '../Card'
 
-import { colorShape } from '../_internal/utils/shapes'
 import { up } from '../_internal/styles/breakpoints'
 import theme from '../_internal/styles/theme'
+import type { Elevation } from '../_internal/styles/elevation'
 
 // const getDensity = (props) => props.dense && css`
 //   @media screen and (min-width: ${breakpoints.small}px) {
@@ -16,11 +16,18 @@ import theme from '../_internal/styles/theme'
 //   }
 // `
 
-const Appbar = (props) => (
-  <Card {...props}/>
-)
+type TopAppBarProps = {
+  elevation: Elevation,
+  fixed: boolean,
+  prominent: boolean,
+  short: boolean,
+  shortCollapsed: boolean,
+}
 
-const RMAppbar = styled(Appbar)`
+const Appbar = styled(Card)`
+  --card-surface: var(--theme-primary);
+  ${(props) => !props.shortCollapsed && '--card-corner-radius: 0'};
+
   align-items: center;
   display: flex;
   flex-direction: row;
@@ -40,41 +47,25 @@ const RMAppbar = styled(Appbar)`
     height: 64px;
     padding: 0 24px;
   }
+
+  ${'' /* clip-path: polygon(
+    var(--card-sharp) 0%,
+    calc(100% - var(--card-sharp)) 0%,
+    100% var(--card-sharp),
+    100% calc(100% - var(--card-sharp)),
+    calc(100% - var(--card-sharp)) 100%,
+    var(--card-sharp) 100%,
+    0% calc(100% - var(--card-sharp)),
+    0% var(--card-sharp)
+  ); */};
 `
 
-RMAppbar.propTypes = {
-  component: PT.oneOfType([PT.string, PT.element]),
-  elevation: PT.number,
-  square: PT.bool,
-  color: colorShape,
-  theme: PT.object.isRequired,
-}
-
-RMAppbar.defaultProps = {
-  component: 'header',
+Appbar.defaultProps = {
   elevation: 4,
-  square: true,
-  color: theme.background.appBar,
-  theme,
+  fixed: true,
+  prominent: false,
+  short: false,
+  shortCollapsed: false,
 }
 
-export default RMAppbar
-
-injectGlobal`
-  body {
-    ${'' /* TODO: REMOVE THIS HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */}
-    background-color: ${theme.background.body};
-    ${'' /* TODO: REMOVE THIS HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */}
-    padding-top: 56px;
-  }
-  @media screen and (orientation: landscape) {
-    body {
-      padding-top: 48px;
-    }
-  }
-  ${up('sm')} {
-    body {
-      padding-top: 64px;
-    }
-  }
-`
+export default Appbar

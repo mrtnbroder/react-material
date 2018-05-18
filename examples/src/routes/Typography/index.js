@@ -1,29 +1,28 @@
-
 import * as React from 'react'
 
 import '../../App.css'
 
-import {
-  Typography,
-  Card,
-} from 'react-material'
+import { Typography, Card } from 'react-material'
 
 class App extends React.Component {
   render() {
     return (
-      <Card className='Card Card--center'>
-        <Typography type='display4'>Display4</Typography>
-        <Typography type='display3'>Display3</Typography>
-        <Typography type='display2'>Display2</Typography>
-        <Typography type='display1'>Display1</Typography>
-        <Typography type='headline'>Headline</Typography>
-        <Typography type='title'>Title</Typography>
-        <Typography type='subhead2'>Subhead2</Typography>
-        <Typography type='subhead1'>Subhead1</Typography>
-        <Typography type='body2'>Body2</Typography>
-        <Typography type='body1'>Body1</Typography>
-        <Typography type='caption'>Caption</Typography>
-        <Typography type='button'>Button</Typography>
+      <Card className="Card Card--center">
+        <Typography type="headline1">Headline1</Typography>
+        <Typography type="headline2">Headline2</Typography>
+        <Typography type="headline3">Headline3</Typography>
+        <Typography type="headline4">Headline4</Typography>
+        <Typography type="headline5">Headline5</Typography>
+        <Typography type="headline6">Headline6</Typography>
+        <Typography type="subtitle1">Subtitle1</Typography>
+        <Typography type="subtitle2">Subtitle2</Typography>
+        <Typography type="body1">Body1</Typography>
+        <Typography type="body2">Body2</Typography>
+        <Typography type="caption">Caption</Typography>
+        <Typography type="button" color="secondary">
+          Button
+        </Typography>
+        <Typography type="overline">Overline</Typography>
       </Card>
     )
   }

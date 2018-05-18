@@ -1,8 +1,4 @@
 
-body {
-  background-color: #FAFAFA;
-}
-
 .Card {
   width: calc(12 * 64px);
   padding: 24px;
@@ -11,4 +7,9 @@ body {
 
 .Card--center {
   margin: 24px auto;
+}
+
+.link {
+  text-decoration: none;
+  margin-right: 24px;
 }

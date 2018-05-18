@@ -4,6 +4,9 @@
  *  @namespace Colors
  */
 
+ export const white = '#fff'
+
+ export const black = '#000'
 
 /**
  */
@@ -344,15 +347,17 @@ export const blueGrey: Color = {
 export const darkText = {
   primary: 'rgba(0, 0, 0, 0.87)',
   secondary: 'rgba(0, 0, 0, 0.54)',
+  hint: 'rgba(0, 0, 0, 0.38)',
   disabled: 'rgba(0, 0, 0, 0.38)',
-  dividers: 'rgba(0, 0, 0, 0.12)'
+  icon: 'rgba(0, 0, 0, 0.38)',
 }
 
 export const lightText = {
-  primary: 'rgba(255, 255, 255, 1)',
+  primary: white,
   secondary: 'rgba(255, 255, 255, 0.7)',
+  hint: 'rgba(255, 255, 255, 0.5)',
   disabled: 'rgba(255, 255, 255, 0.5)',
-  dividers: 'rgba(255, 255, 255, 0.12)'
+  icon: 'rgba(255, 255, 255, 0.5)',
 }
 
 export const darkIcons = {
@@ -364,7 +369,3 @@ export const lightIcons = {
   active: 'rgba(255, 255, 255, 1)',
   inactive: 'rgba(255, 255, 255, 0.5)',
 }
-
-export const white = '#fff'
-
-export const black = '#000'

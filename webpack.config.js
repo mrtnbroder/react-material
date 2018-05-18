@@ -1,24 +1,19 @@
-
 const path = require('path')
 const webpack = require('webpack')
-const { dependencies, name } = require('./package')
+const pkg = require('./package')
 
-const externals = Object.keys(dependencies)
-
-const plugins = [
-  new webpack.DefinePlugin({
-    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-  })
-]
+// const IS_PROD = process.env.NODE_ENV === 'production'
+// const IS_DEV = !IS_PROD
 
 module.exports = {
+  mode: process.env.NODE_ENV,
 
   output: {
-    library: name,
+    library: pkg.name,
     libraryTarget: 'umd',
   },
 
-  externals,
+  externals: Object.keys(pkg.dependencies),
 
   module: {
     loaders: [
@@ -37,7 +32,12 @@ module.exports = {
     Buffer: false,
   },
 
-  plugins,
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+      VERSION: JSON.stringify(pkg.version),
+    }),
+  ],
 
   resolve: {
     alias: {
@@ -47,4 +47,7 @@ module.exports = {
     },
   },
 
+  performance: {
+    hints: 'warning',
+  },
 }

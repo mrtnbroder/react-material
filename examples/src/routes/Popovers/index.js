@@ -21,14 +21,11 @@ class App extends React.Component {
     targetOriginHorizontal: 'left',
   }
 
-  anchor = null
+  anchorRef = null
 
   togglePopover = () => this.setState({ open: !this.state.open })
 
-  setAnchor = (anchor) => {
-    console.log(anchor);
-    this.anchor = anchor
-  }
+  setAnchorRef = (anchorRef) => this.anchorRefRef = anchorRef
 
   handleChange = (key) => (e) => {
     this.setState({
@@ -46,11 +43,11 @@ class App extends React.Component {
   render() {
     return (
       <Card className='Card Card--center'>
-        <Button getRef={this.setAnchor} onClick={this.togglePopover}>
+        <Button innerRef={this.setAnchorRef} onClick={this.togglePopover}>
           Open Popover
         </Button>
         <Popover
-          anchorEl={this.anchor}
+          anchorEl={this.anchorRef}
           anchorOrigin={{
             horizontal: this.state.anchorOriginHorizontal,
             vertical: this.state.anchorOriginVertical,

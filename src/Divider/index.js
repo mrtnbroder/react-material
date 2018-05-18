@@ -1,11 +1,21 @@
-
-import React from 'react'
+// @flow
+import * as React from 'react'
 import styled from 'styled-components'
 
-const RMDivider = styled.hr`
-  border: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-  margin: ${(props) => props.nested ? '7px 0 8px' : props.inset ? '7px 0 8px 72px' : 0};
-`
+type DividerProps = {
+  className?: string,
+  nested?: boolean,
+  inset?: boolean,
+}
 
-export const Divider = RMDivider
+const Divider = styled.hr`
+  --divider-on-surface: rgba(0, 0, 0, 0.12);
+  display: flex;
+  border: none;
+  border-bottom: 1px solid var(--divider-on-surface);
+  margin: 0;
+
+  ${(props) => props.nested && 'margin: 7px 0 8px'};
+  ${(props) => props.inset && 'margin: 7px 0 8px 72px'};
+`
+export default Divider

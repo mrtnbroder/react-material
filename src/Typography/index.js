@@ -1,5 +1,5 @@
 
-import React from 'react'
+import * as React from 'react'
 import PT from 'prop-types'
 import styled from 'styled-components'
 
@@ -23,14 +23,12 @@ const Typography = ({
   <Comp {...props}/>
 )
 
+const getTypeStyles = (props) => props.typography[props.type]
+
 const RMTypography = styled(Typography)`
   color: ${getColor};
-  font-size: ${(props) => props.typography.size[props.type]};
-  font-weight: ${(props) => props.typography.weight[props.type]};
-  letter-spacing: ${(props) => props.typography.tracking[props.type]};
-  line-height: ${(props) => props.typography.leading[props.type]};
-  text-transform: ${(props) => props.typography.transform[props.type]};
   margin: 0;
+  ${getTypeStyles}
 `
 
 RMTypography.defaultProps = {
@@ -44,18 +42,19 @@ RMTypography.propTypes = {
   color: colorShape,
   component: PT.oneOfType([PT.element, PT.string]),
   type: PT.oneOf([
-    'display4',
-    'display3',
-    'display2',
-    'display1',
-    'headline',
-    'title',
-    'subhead2',
-    'subhead1',
-    'body2',
+    'headline1',
+    'headline2',
+    'headline3',
+    'headline4',
+    'headline5',
+    'headline6',
+    'subtitle1',
+    'subtitle2',
     'body1',
-    'caption',
+    'body2',
     'button',
+    'caption',
+    'overline',
   ]),
   typography: PT.object.isRequired,
 }

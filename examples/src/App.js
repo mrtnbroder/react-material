@@ -29,7 +29,7 @@ class App extends React.Component {
       <div className='appbar'>
         <Appbar>
           <Icon fill='rgba(255, 255, 255, 1)' icon='menu'/>
-          <Typography type='title' color='white'>
+          <Typography type='subtitle1' color='white'>
             <span>Components</span>
             <span>– Lists</span>
           </Typography>

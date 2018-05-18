@@ -134,7 +134,7 @@ class Popover extends React.PureComponent<Props, State> implements IPopover {
           didFinish={this.didFinish}
           >
           <Card
-            style={{ zIndex: 8, width: this.props.width, ...style }}
+            style={{ zIndex: elevation, width: this.props.width, ...style }}
             elevation={elevation}
             >
             {children}

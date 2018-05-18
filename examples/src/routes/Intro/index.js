@@ -12,7 +12,7 @@ class App extends React.Component {
   render() {
     return (
       <Card className='Card Card--center'>
-        <Typography type='display1'>Welcome!</Typography>
+        <Typography type='headline4'>Welcome!</Typography>
       </Card>
     )
   }

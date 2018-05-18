@@ -3,9 +3,17 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-// import { elevations } from '../_internal/styles/elevations'
+import { elevations } from '../_internal/styles/elevations'
 import { linearOutSlowIn } from '../_internal/styles/transitions'
 // import theme from '../_internal/styles/theme'
+
+type Appearancea =
+  | 'primary'
+  | 'secondary'
+  | 'info'
+  | 'danger'
+  | 'warning'
+  | 'success'
 
 type Appearance =
   | 'flat'
@@ -76,7 +84,11 @@ const getThemeDefault = (props) => ({
   [themeNamespace]: {
     light: {
       raised: `
-        background: ${props.theme.grey[300]};
+        color: var(--theme-on-secondary);
+        background: var(--theme-secondary);
+        &:focus {
+          background: ${props.theme.primary[700]};
+        }
         &:disabled {
           color: rgba(0, 0, 0, 0.26);
           background: rgba(0, 0, 0, 0.12);
@@ -117,6 +129,14 @@ const getThemeDefault = (props) => ({
   }
 })
 
+const getElevation = (props) => props.appearance === 'raised' ? `
+  &:hover {
+    box-shadow: ${elevations[2]};
+  }
+` : `
+  box-shadow: none;
+`
+
 const getDense = (props) => props.dense ? `
   margin: 8px;
   line-height: 32px;
@@ -147,6 +167,7 @@ const StyledButton = styled.button`
     cursor: default;
   }
   ${getDense}
+  ${getElevation}
   ${getThemeStyles}
 `
 

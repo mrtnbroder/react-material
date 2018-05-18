@@ -1,5 +1,6 @@
 // @flow
 
+export const keys = Object.keys
 // Monadic Operations
 // alias: chain, fmap, bind
 export const chain = (f) => (x) => [].concat.apply([], map(f)(x))
