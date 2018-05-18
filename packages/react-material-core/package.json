@@ -1,0 +1,12 @@
+{
+  "name": "react-material-card",
+  "version": "0.1.0",
+  "description": "Base package for all react-material-* components",
+  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mrtnbroder/react-material/tree/master/packages/react-material-card"
+  },
+  "author": "Martin Broder <hello@martinbroder.com> (https://martinbroder.com)",
+  "license": "ISC"
+}

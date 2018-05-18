@@ -1,0 +1,15 @@
+{
+  "name": "react-material-datepicker",
+  "version": "0.1.0",
+  "description": "Pickers provide a simple way to select a single value from a pre-determined set",
+  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mrtnbroder/react-material/tree/master/packages/react-material-datepicker"
+  },
+  "author": "Martin Broder <hello@martinbroder.com> (https://martinbroder.com)",
+  "license": "ISC",
+  "dependencies": {
+    "react-material-core": "^0.1.0"
+  }
+}

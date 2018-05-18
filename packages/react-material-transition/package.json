@@ -1,0 +1,15 @@
+{
+  "name": "react-material-transition",
+  "version": "0.1.0",
+  "description": "A component that allows high-level managed animations",
+  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mrtnbroder/react-material/tree/master/packages/react-material-transition"
+  },
+  "author": "Martin Broder <hello@martinbroder.com> (https://martinbroder.com)",
+  "license": "ISC",
+  "dependencies": {
+    "react-material-core": "^0.1.0"
+  }
+}
